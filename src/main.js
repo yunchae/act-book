@@ -3,8 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
 import Api from './api'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import {ClientTable, Event} from 'vue-tables-2';
+
+Vue.use(ClientTable);
 
 Vue.prototype.$api = Api;
 
