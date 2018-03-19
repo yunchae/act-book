@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" style="margin-bottom: 50px">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -17,8 +17,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/bookList">목록조회 <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">도서신청</a></li>
+            <li v-bind:class="{active:isList}" @click="selectNav">
+              <router-link to="/booklist">목록조회 </router-link>
+            </li>
+            <li v-bind:class="{active:isRequest}" @click="selectNav">
+              <router-link to="/bookrequest">도서신청</router-link>
+            </li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -29,7 +33,26 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      isList : true,
+      isRequest: false
+    }
+  },
+  methods: {
+    selectNav: function(e) {
+
+        if(e.target.pathname === '/booklist'){
+          this.isList = true;
+          this.isRequest = false;
+        }else if(e.target.pathname === '/bookrequest'){
+          this.isRequest = true;
+          this.isList = false;
+        }
+    }
+
+  }
 }
 </script>
 

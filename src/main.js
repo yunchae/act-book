@@ -5,14 +5,16 @@ import App from './App'
 import router from './router'
 import Api from './api'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {ClientTable, Event} from 'vue-tables-2';
+import BootstrapVue from 'bootstrap-vue'
+import {ClientTable, Event} from 'vue-tables-2'
 
-Vue.use(ClientTable);
+Vue.use(ClientTable)
+Vue.use(BootstrapVue)
 
-Vue.prototype.$api = Api;
+Vue.prototype.$api = Api
 
 Vue.config.productionTip = false
-Vue.config.devtools = false;
+Vue.config.devtools = false
 
 /* eslint-disable no-new */
 new Vue({

@@ -1,6 +1,6 @@
 <template>
 
-  <div id="bookList">
+  <div id="bookRequest">
     <!--<div class="col-sm-12">-->
 
       <!--<div class="btn-group" style="margin-left:10px;width:100%" data-toggle="buttons">-->
@@ -28,17 +28,17 @@
 
     <!--</div>-->
     <div class="btn-group" style="margin-bottom: 10px">
-<div style="margin-left: 5px; float: left" >
-      <label class="radio-inline">
-        <input type="radio" name="optradio">전체
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="optradio">보유
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="optradio">신청중
-      </label>
-</div>
+<!--<div style="margin-left: 5px; float: left" >-->
+      <!--<label class="radio-inline">-->
+        <!--<input type="radio" name="optradio">전체-->
+      <!--</label>-->
+      <!--<label class="radio-inline">-->
+        <!--<input type="radio" name="optradio">보유-->
+      <!--</label>-->
+      <!--<label class="radio-inline">-->
+        <!--<input type="radio" name="optradio">신청중-->
+      <!--</label>-->
+<!--</div>-->
       <!--<div class="row">-->
         <div class="col-xs-6 " style="float: right">
           <div class="input-group">
@@ -61,14 +61,14 @@
 
 <script>
 export default {
-  name: 'BookList',
+  name: 'BookRequest',
   data () {
     return {
       columns: ['No', '제목', '저자','출판사','출판년도','상태'],
       tableData: [
-        { No: 1, 제목: "자바의 정석", 저자: "20", 출판사:"시나공", 출판년도:"2018", 상태:"신청중" },
-        { No: 2, 제목: "자바의 정석", 저자: "20", 출판사:"시나공", 출판년도:"2018", 상태:"신청중" },
-        { No: 3, 제목: "자바의 정석", 저자: "20", 출판사:"시나공", 출판년도:"2018", 상태:"신청중" }
+        { No: 1, 제목: "New_자바의 정석1", 저자: "20", 출판사:"시나공", 출판년도:"2018", 상태:"신청중" },
+        { No: 2, 제목: "자바의 정석2", 저자: "20", 출판사:"시나공", 출판년도:"2018", 상태:"신청중" },
+        { No: 3, 제목: "자바의 정석3", 저자: "20", 출판사:"시나공", 출판년도:"2018", 상태:"신청중" }
       ],
       options: {
           filterable: false
