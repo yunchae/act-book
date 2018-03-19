@@ -1,32 +1,7 @@
 <template>
 
   <div id="bookList">
-    <!--<div class="col-sm-12">-->
 
-      <!--<div class="btn-group" style="margin-left:10px;width:100%" data-toggle="buttons">-->
-        <!--<label class="btn active">-->
-          <!--<input type="radio" name="options" id="option1" autocomplete="off" checked> 전체-->
-        <!--</label>-->
-
-        <!--<label class="btn">-->
-          <!--<input type="radio" name="options" id="option2" autocomplete="off" > 보유-->
-        <!--</label>-->
-
-        <!--<label class="btn">-->
-          <!--<input type="radio" name="options" id="option3" autocomplete="off" > 신청중-->
-        <!--</label>-->
-
-        <!--<div class="col-lg-6">-->
-          <!--<div class="input-group">-->
-            <!--<input type="text" class="form-control" placeholder="책 제목만 검색 가능합니다">-->
-            <!--<span class="input-group-btn">-->
-        <!--<button class="btn btn-secondary" type="button">Go!</button>-->
-      <!--</span>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-
-    <!--</div>-->
     <div class="btn-group" style="margin-bottom: 10px">
 <div style="margin-left: 5px; float: left" >
       <label class="radio-inline">
@@ -64,18 +39,33 @@ export default {
   name: 'BookList',
   data () {
     return {
-      columns: ['No', '제목', '저자','출판사','출판년도','상태'],
-      tableData: [
-        { No: 1, 제목: "자바의 정석", 저자: "20", 출판사:"시나공", 출판년도:"2018", 상태:"신청중" },
-        { No: 2, 제목: "자바의 정석", 저자: "20", 출판사:"시나공", 출판년도:"2018", 상태:"신청중" },
-        { No: 3, 제목: "자바의 정석", 저자: "20", 출판사:"시나공", 출판년도:"2018", 상태:"신청중" }
-      ],
+      columns: ['no', 'title', 'author','publisher','publishing_date','status'],
+      tableData: '',
       options: {
-          filterable: false
+          headings: {
+           no: 'No.',
+           title: "제목",
+           author: "저자",
+           publisher: "출판사",
+           publishing_date: "출판년도",
+           status: "상태"
+          },
+          filterable: false, // 필터 사용 여부 또는 필터 적용할 컬럼 설정
+          perPage:2, // 한페이지에 보여줄 리스트 개수 (초기값)
+          perPageValues: [1, 2, 3, 4, 5], // 한페이지에 보여줄 리스트 개수를 설정하는 값 리스트
+//        columnsDisplay: "desktop"
         // see the options API
         //https://www.npmjs.com/package/vue-tables-2
       }
     }
+  },
+  created: function() {
+    this.tableData = [
+      { no: 1, title: "자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 2, title: "자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 3, title: "자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" }
+    ]
+
   }
 }
 </script>
