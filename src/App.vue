@@ -1,12 +1,12 @@
 <template>
-  <div id="app" >
-    <header class="col-lg-11" style="float: none;margin:auto">
-      <nav class="navbar navbar-default" style="margin-bottom: 50px">
+  <div id="app">
+      <nav class="navbar navbar-default col-lg-11"
+           style="float:none;margin: 0px auto 50px auto;width:90.2%">
         <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
+          <!-- Brand and toggsle get grouped for better mobile display -->
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
+              <span class="ssr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -27,10 +27,10 @@
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
-    </header>
-    <container class="col-lg-11" style="margin-left: 4%">
+
+    <div class="container col-lg-11" style="float: none" >
       <router-view/>
-    </container>
+    </div>
   </div>
 </template>
 

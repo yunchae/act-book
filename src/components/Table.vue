@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'table',
+  name: 'Table',
   data () {
     return {
       columns: ['id', 'name', 'age'],
