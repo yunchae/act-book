@@ -1,46 +1,8 @@
 <template>
 
   <div id="bookRequest">
-    <!--<div class="col-sm-12">-->
-
-      <!--<div class="btn-group" style="margin-left:10px;width:100%" data-toggle="buttons">-->
-        <!--<label class="btn active">-->
-          <!--<input type="radio" name="options" id="option1" autocomplete="off" checked> 전체-->
-        <!--</label>-->
-
-        <!--<label class="btn">-->
-          <!--<input type="radio" name="options" id="option2" autocomplete="off" > 보유-->
-        <!--</label>-->
-
-        <!--<label class="btn">-->
-          <!--<input type="radio" name="options" id="option3" autocomplete="off" > 신청중-->
-        <!--</label>-->
-
-        <!--<div class="col-lg-6">-->
-          <!--<div class="input-group">-->
-            <!--<input type="text" class="form-control" placeholder="책 제목만 검색 가능합니다">-->
-            <!--<span class="input-group-btn">-->
-        <!--<button class="btn btn-secondary" type="button">Go!</button>-->
-      <!--</span>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-
-    <!--</div>-->
-    <div class="btn-group" style="margin-bottom: 10px">
-<!--<div style="margin-left: 5px; float: left" >-->
-      <!--<label class="radio-inline">-->
-        <!--<input type="radio" name="optradio">전체-->
-      <!--</label>-->
-      <!--<label class="radio-inline">-->
-        <!--<input type="radio" name="optradio">보유-->
-      <!--</label>-->
-      <!--<label class="radio-inline">-->
-        <!--<input type="radio" name="optradio">신청중-->
-      <!--</label>-->
-<!--</div>-->
-      <!--<div class="row">-->
-        <div class="col-xs-6 " style="float: right">
+    <div class="btn-group" style="margin-bottom: 10px;">
+        <div class="col-xs-6 " style="float: right;padding-right: 0px">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
             <div class="input-group-btn">
@@ -50,7 +12,6 @@
             </div>
           </div>
         </div>
-      <!--</div>-->
 </div>
 
 
@@ -76,8 +37,8 @@ export default {
           status: "상태"
         },
         filterable: false, // 필터 사용 여부 또는 필터 적용할 컬럼 설정
-        perPage:2, // 한페이지에 보여줄 리스트 개수 (초기값)
-        perPageValues: [1, 2, 3, 4, 5], // 한페이지에 보여줄 리스트 개수를 설정하는 값 리스트
+        perPage:10, // 한페이지에 보여줄 리스트 개수 (초기값)
+        perPageValues: [10, 20, 30, 40, 50], // 한페이지에 보여줄 리스트 개수를 설정하는 값 리스트
 //        columnsDisplay: "desktop"
         // see the options API
         //https://www.npmjs.com/package/vue-tables-2
@@ -86,9 +47,19 @@ export default {
   },
   created: function() {
     this.tableData = [
-      { no: 1, title: "자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 2, title: "자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 3, title: "자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" }
+      { no: 1, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 2, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 3, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 4, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 5, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 6, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 7, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 8, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 9, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 10, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 11, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 12, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
+      { no: 13, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" }
     ]
 
   }
