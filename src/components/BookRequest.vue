@@ -23,8 +23,7 @@
 <script>
 export default {
   name: 'BookRequest',
-  data () {
-    return {
+  data: {
       columns: ['no', 'title', 'author','publisher','publishing_date','status'],
       tableData: '',
       options: {
@@ -43,7 +42,6 @@ export default {
         // see the options API
         //https://www.npmjs.com/package/vue-tables-2
       }
-    }
   },
   created: function() {
     this.tableData = [

@@ -10,8 +10,7 @@
 <script>
 export default {
   name: 'Table',
-  data () {
-    return {
+  data :{
       columns: ['id', 'name', 'age'],
       tableData: [
         { id: 1, name: "John", age: "20" },
@@ -25,7 +24,6 @@ export default {
         //https://www.npmjs.com/package/vue-tables-2
       }
     }
-  }
 }
 </script>
 
