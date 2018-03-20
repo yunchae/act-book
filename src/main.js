@@ -7,11 +7,13 @@ import Api from './api'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import BootstrapVue from 'bootstrap-vue'
 import {ClientTable, Event} from 'vue-tables-2'
+import Book from './utils/Book'
 
 Vue.use(ClientTable)
 Vue.use(BootstrapVue)
 
 Vue.prototype.$api = Api
+Vue.prototype.book = Book;
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
