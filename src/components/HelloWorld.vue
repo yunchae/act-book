@@ -92,7 +92,7 @@ export default {
     const firebase = new FirebaseDao();
 
 //    var book = new Book("ISBN11112314", "title-new Book","ken","2017-09-12", "시공사","신청중");
-    let book = this.book("ISBN11112314", "title-new Book","ken","2017-09-12", "시공사","신청중");
+    let book = this.createBook("ISBN11112314", "title-new Book","ken","2017-09-12", "시공사","신청중");
 
     firebase.insertBook(book);
 
