@@ -23,24 +23,26 @@
 <script>
 export default {
   name: 'BookRequest',
-  data: {
-      columns: ['no', 'title', 'author','publisher','publishing_date','status'],
-      tableData: '',
-      options: {
-        headings: {
-          no: 'No.',
-          title: "제목",
-          author: "저자",
-          publisher: "출판사",
-          publishing_date: "출판년도",
-          status: "상태"
-        },
-        filterable: false, // 필터 사용 여부 또는 필터 적용할 컬럼 설정
-        perPage:10, // 한페이지에 보여줄 리스트 개수 (초기값)
-        perPageValues: [10, 20, 30, 40, 50], // 한페이지에 보여줄 리스트 개수를 설정하는 값 리스트
-//        columnsDisplay: "desktop"
-        // see the options API
-        //https://www.npmjs.com/package/vue-tables-2
+  data: function(){
+      return {
+        columns: ['no', 'title', 'author','publisher','publishing_date','status'],
+        tableData: '',
+        options: {
+          headings: {
+            no: 'No.',
+            title: "제목",
+            author: "저자",
+            publisher: "출판사",
+            publishing_date: "출판년도",
+            status: "상태"
+          },
+          filterable: false, // 필터 사용 여부 또는 필터 적용할 컬럼 설정
+          perPage: 10, // 한페이지에 보여줄 리스트 개수 (초기값)
+          perPageValues: [10, 20, 30, 40, 50], // 한페이지에 보여줄 리스트 개수를 설정하는 값 리스트
+  //        columnsDisplay: "desktop"
+          // see the options API
+          //https://www.npmjs.com/package/vue-tables-2
+        }
       }
   },
   created: function() {
