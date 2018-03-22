@@ -84,7 +84,8 @@
 </template>
 
 <script>
-import FirebaseDao from '@/utils/FirebaseDao';
+import FirebaseDao from  '@/utils/FirebaseDao';
+import { readBooks2 } from '@/utils/FirebaseDao';
 //import Book from "../utils/Book";
 export default {
   name: 'HelloWorld',
