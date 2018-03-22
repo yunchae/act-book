@@ -17,10 +17,10 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li v-bind:class="{active:isList}" @click="selectNav">
+              <li id="btnBookList" v-bind:class="{active:isList}" @click="selectNav">
                 <router-link to="/booklist">목록조회 </router-link>
               </li>
-              <li v-bind:class="{active:isRequest}" @click="selectNav">
+              <li id="btnBookRequest" v-bind:class="{active:isRequest}" @click="selectNav">
                 <router-link to="/bookrequest">도서신청</router-link>
               </li>
             </ul>
@@ -46,12 +46,17 @@ export default {
   methods: {
     selectNav: function(e) {
 
+//        console.log('e.target.pathname', e.target);
+
         if(e.target.pathname === '/booklist'){
           this.isList = true;
           this.isRequest = false;
         }else if(e.target.pathname === '/bookrequest'){
+//          console.log('bookrequest', e.target.pathname)
           this.isRequest = true;
           this.isList = false;
+//          console.log('this.isRequest',this.isRequest)
+//          console.log('this.isList', this.isList)
         }
     }
 
