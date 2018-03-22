@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import firebase from 'firebase';
-import FirebaseDao, { readBooks2 } from '../../../../src/utils/FirebaseDao';
+import FirebaseDao from '../../../../src/utils/FirebaseDao';
 //import { mount } from 'vue-test-utils'
 
 describe('FirebaseDao Util', () => {
@@ -24,15 +24,15 @@ describe('FirebaseDao Util', () => {
     refStub.withArgs('books/').returns({ once: onceStub });
     onceStub.withArgs('value').returns({ then: thenStub });
     // thenStub.returns(Promise.resolve());
-    thenStub.returns(Promise.resolve());
+    thenStub.returns(Promise.resolve( ));
 
     // readBooks2();
     //
-    // const fb = new FirebaseDao();
-    // console.log(fb.readBooks());
-    //
-    // var results = fb.readBooks();
-    readBooks2();
+     const fb = new FirebaseDao();
+     console.log(fb.readBooks());
+
+     //var results = fb.readBooks();
+    //readBooks2();
     // console.log('>>>>>>>>'+ readBooks2());
     //Todo: 데이터를 읽어서 건수와 내용을 비교하는 항목 추가 필요.
 

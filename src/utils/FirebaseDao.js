@@ -41,10 +41,3 @@ export default class FirebaseDao {
     })
   }
 }
-
-export function readBooks2(){
-  firebase.database().ref('books/').once('value').then(function(snapshot){
-    return snapshot.val();
-  })
-
-}
