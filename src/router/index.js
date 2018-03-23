@@ -15,14 +15,10 @@ export default new Router({
       component: Table
     },
     {
-      path: '/',
-      name:'HelloWorld',
-      component: HelloWorld
-    },
-    {
       path: '/booklist',
       name:'BookList',
-      component: BookList
+      component: BookList,
+      alias: '/'
     },
     {
       path: '/bookrequest',
