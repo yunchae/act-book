@@ -12,7 +12,7 @@ import NewBook from './utils/Book'
 Vue.use(ClientTable)
 Vue.use(BootstrapVue)
 
-Vue.prototype.$api = Api
+Vue.prototype.api = Api
 Vue.prototype.createBook = NewBook;
 
 Vue.config.productionTip = false
