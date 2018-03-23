@@ -39,27 +39,27 @@ export default {
   name: 'App',
   data() {
     return {
-      isList : true,
+      isList : false,
       isRequest: false
     }
   },
   methods: {
     selectNav: function(e) {
-
-//        console.log('e.target.pathname', e.target);
-
         if(e.target.pathname === '/booklist'){
           this.isList = true;
           this.isRequest = false;
         }else if(e.target.pathname === '/bookrequest'){
-//          console.log('bookrequest', e.target.pathname)
           this.isRequest = true;
           this.isList = false;
-//          console.log('this.isRequest',this.isRequest)
-//          console.log('this.isList', this.isList)
         }
     }
-
+  },
+  mounted: function(){
+    if(this.$route.path === '/booklist'){
+      this.isList = true;
+    }else if(this.$route.path === '/bookrequest'){
+      this.isRequest = true;
+    }
   }
 }
 </script>
