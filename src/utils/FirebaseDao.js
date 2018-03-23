@@ -19,6 +19,7 @@ export default class FirebaseDao {
 
   insertBook(book) {
     this.database.ref('books/' + book.isbn).set({
+      isbn: book.isbn,
       title : book.title,
       author : book.author,
       publishedDate : book.publishedDate,
@@ -31,6 +32,7 @@ export default class FirebaseDao {
 
   updateBook(book){
     this.database.ref('books/' + book.isbn).update({
+      isbn: book.isbn,
       title : book.title,
       author : book.author,
       publishedDate : book.publishedDate,
