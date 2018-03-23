@@ -84,7 +84,8 @@
 </template>
 
 <script>
-import FirebaseDao from '@/utils/FirebaseDao';
+import FirebaseDao from  '@/utils/FirebaseDao';
+import { readBooks2 } from '@/utils/FirebaseDao';
 //import Book from "../utils/Book";
 export default {
   name: 'HelloWorld',
@@ -92,11 +93,11 @@ export default {
     const firebase = new FirebaseDao();
 
 //    var book = new Book("ISBN11112314", "title-new Book","ken","2017-09-12", "시공사","신청중");
-    let book = this.createBook("ISBN11112314", "title-new Book","ken","2017-09-12", "시공사","신청중");
+    //let book = this.createBook("ISBN11112314", "title-new Book","ken","2017-09-12", "시공사","신청중");
 
-    firebase.insertBook(book);
+    //firebase.insertBook(book);
 
-    firebase.readBooks((value) => {
+    firebase.readBooks((value ) => {
       console.log(value);
     });
   },
