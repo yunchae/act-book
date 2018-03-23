@@ -5,13 +5,13 @@
     <div class="btn-group" style="margin-bottom: 10px">
 <div style="margin-left: 5px; float: left" >
       <label class="radio-inline">
-        <input type="radio" name="optradio">전체
+        <input type="radio" name="optradio" value="all" v-model="searchOpt">전체
       </label>
       <label class="radio-inline">
-        <input type="radio" name="optradio">보유
+        <input type="radio" name="optradio" value="bought" v-model="searchOpt">보유
       </label>
       <label class="radio-inline">
-        <input type="radio" name="optradio">신청중
+        <input type="radio" name="optradio" value="request" v-model="searchOpt">신청중
       </label>
 </div>
       <!--<div class="row">-->
@@ -40,6 +40,7 @@ export default {
   name: 'BookList',
   data: function () {
     return {
+      searchOpt: 'all',
       tableData: [],
       columns: ['no', 'title', 'author', 'publisher', 'publishedDate', 'status'],
       options: {
