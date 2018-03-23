@@ -13,7 +13,16 @@ export default class FirebaseDao {
 
   readBooks(callback) {
     this.database.ref('books/').once('value').then(function(snapshot){
-      callback(snapshot.val());
+      var retArr = [];
+
+      //Firebase database에서 조회 시 결과가 object로 넘어와서 배열로 변경 함
+      snapshot.forEach((childSnapshot) => {
+        var item = childSnapshot.val();
+        item.key = childSnapshot.key;
+        retArr.push(item);
+      })
+      console.log(retArr);
+      callback(retArr);
     })
   }
 

@@ -41,7 +41,7 @@ export default {
   data: function () {
     return {
       tableData: [],
-      columns: ['no', 'title', 'author', 'publisher', 'publishing_date', 'status'],
+      columns: ['no', 'title', 'author', 'publisher', 'publishedDate', 'status'],
       options: {
         headings: {
           no: 'No.',
