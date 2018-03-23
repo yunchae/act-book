@@ -55,7 +55,7 @@ export default {
     }
   },
   mounted: function(){
-    if(this.$route.path === '/booklist'){
+    if(this.$route.path === '/booklist' || this.$route.path === '/'){
       this.isList = true;
     }else if(this.$route.path === '/bookrequest'){
       this.isRequest = true;
