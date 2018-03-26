@@ -1,7 +1,8 @@
 import sinon from 'sinon'
 import BookList from '../../../../src/components/BookList.vue'
 import FirebaseDao from '../../../../src/utils/FirebaseDao'
-import {shallow} from 'vue-test-utils';
+import {shallow, mount} from 'vue-test-utils';
+// import expect from 'chai'
 
 describe('BooList test', () => {
   let sandbox;
@@ -46,6 +47,23 @@ describe('BooList test', () => {
 
 
   })
+
+  it('BookList화면이 뜨면 readBooksByFilter 함수가 호출된다.', () => {
+    const readBooksByFilterSpy = sandbox.spy(BookList.methods, "readBooksByFilter");
+    const vm = mount(BookList);
+
+    sinon.assert.calledOnce(readBooksByFilterSpy);
+
+  })
+
+  it('BookList 화면이 뜨면 readBooksByFilter의  firebasedao.readbooks가 호출된다.', () => {
+    const FirebaseDaoStub = sandbox.stub(FirebaseDao.prototype, 'readBooks');
+
+    const vm = mount(BookList);
+
+    sinon.assert.calledOnce(FirebaseDaoStub);
+  })
+
 
   it('보유 라디오 버튼을 클릭하면 보유중인 책 목록만 가져오는 함수가 호출된다', () => {
     const wrapper = shallow(BookList);
