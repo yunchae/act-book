@@ -19,15 +19,16 @@ describe('Firebase', () => {
 
   //Todo: 비동기 상황인데 timeout 없이 처리하는 방법 확인 필요.
   it('readBooks를 호출 시 callback함수를 실행한다', () => {
-    refStub.withArgs('books/').returns({orderByChild: orderByChildStub});
-    orderByChildStub.withArgs('title').returns({once: onceStub});
+
+     refStub.withArgs('books/').returns({orderByChild: orderByChildStub});
+     orderByChildStub.withArgs('status').returns({once: onceStub});
     onceStub.withArgs('value').returns({then: thenStub});
     thenStub.returns(Promise.resolve());
 
     const fakedFun = sandbox.spy();
     const fb = new FirebaseDao();
 
-    fb.readBooks(fakedFun);
+    fb.readBooks('전체','',fakedFun);
 
    setTimeout(() => {
       sinon.assert.calledOnce(fakedFun);

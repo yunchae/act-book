@@ -5,21 +5,21 @@
     <div class="btn-group" style="margin-bottom: 10px">
 <div style="margin-left: 5px; float: left" >
       <label class="radio-inline">
-        <input type="radio" name="optradio" value="all" v-model="searchOpt">전체
+        <input id='all' type="radio" name="optradio" value="전체" v-model="searchOpt" @click="getBooksByStatus">전체
       </label>
       <label class="radio-inline">
-        <input type="radio" name="optradio" value="bought" v-model="searchOpt">보유
+        <input type="radio" name="optradio" value="보유" v-model="searchOpt" @click="getBooksByStatus">보유
       </label>
       <label class="radio-inline">
-        <input type="radio" name="optradio" value="request" v-model="searchOpt">신청중
+        <input type="radio" name="optradio" value="신청중" v-model="searchOpt" @click="getBooksByStatus">신청중
       </label>
 </div>
       <!--<div class="row">-->
         <div class="col-lg-6" style="float: right; padding-right: 0px">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
+            <input type="text" class="form-control" placeholder="Search" id="txtSearch" v-model="keyword"/>
             <div class="input-group-btn">
-              <button class="btn btn-primary" type="submit">
+              <button class="btn btn-primary" type="submit" @click="readBooksByFilter">
                 <span class="glyphicon glyphicon-search"></span>
               </button>
             </div>
@@ -40,7 +40,8 @@ export default {
   name: 'BookList',
   data: function () {
     return {
-      searchOpt: 'all',
+      searchOpt: '전체',
+      keyword: '',
       tableData: [],
       columns: ['no', 'title', 'author', 'publisher', 'publishedDate', 'status'],
       options: {
@@ -49,9 +50,10 @@ export default {
           title: "제목",
           author: "저자",
           publisher: "출판사",
-          publishing_date: "출판년도",
+          publishedDate: "출판년도",
           status: "상태"
         },
+        sortable: ['title', 'publishedDate', 'status'],
         filterable: false, // 필터 사용 여부 또는 필터 적용할 컬럼 설정
         perPage: 10, // 한페이지에 보여줄 리스트 개수 (초기값)
         perPageValues: [10, 20, 30, 40, 50], // 한페이지에 보여줄 리스트 개수를 설정하는 값 리스트
@@ -62,12 +64,22 @@ export default {
     }
   },
   created: function () {
-    const fb = new FirebaseDao();
-    fb.readBooks((value) => {
-//      console.log(typeof value + ', ' + value);
+    this.readBooksByFilter();
+  },
+  methods: {
+    getBooksByStatus: function(e){
+      this.searchOpt = e.target.value;
+      this.readBooksByFilter();
+    },
+    readBooksByFilter: function(){
+      const fb = new FirebaseDao();
+      console.log('keyword: ',this.keyword);
+      fb.readBooks(this.searchOpt, this.keyword, this.setTableData);
+    },
+    setTableData: function(value){
       this.tableData = value;
+    }
 
-    })
   }
 
 }
