@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Table from '@/components/Table'
 import BookList from '@/components/BookList'
 import BookRequest from '@/components/BookRequest'
+import BookApproval from '@/components/BookApproval'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/bookrequest',
       name:'BookRequest',
       component: BookRequest
+    },
+    {
+      path: '/bookapproval',
+      name: 'BookApproval',
+      component: BookApproval
     }
   ],
   mode: 'history'
