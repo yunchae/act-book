@@ -4,9 +4,9 @@
     <div class="btn-group" style="margin-bottom: 10px;">
         <div class="col-xs-6 " style="float: right;padding-right: 0px">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
+            <input type="text" class="form-control" placeholder="Search" id="txtSearch" v-model="searchInputTitle"/>
             <div class="input-group-btn">
-              <button class="btn btn-primary" type="submit">
+              <button id="searchButton" class="btn btn-primary" type="submit" @click="searchBookList">
                 <span class="glyphicon glyphicon-search"></span>
               </button>
             </div>
@@ -16,17 +16,26 @@
 
 
 
-    <v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table>
+    <v-client-table :data="tableData" :columns="columns" :options="options">
+      <Button v-if="props.row.status==''" slot="status" slot-scope="props"> {{props.row.status}} 신청</Button>
+      <Button v-else-if="props.row.status=='' slot="status" slot-scope="props"> {{props.row.status}} 신청</Button>
+
+      <Button v-if="props.row.status==''" slot="status" slot-scope="props"> {{props.row.status}} 신청</Button>
+    </v-client-table>
   </div>
 </template>
 
 <script>
+
+  import axios from 'axios'
+
 export default {
   name: 'BookRequest',
   data: function(){
       return {
+        searchInputTitle:'',
         columns: ['no', 'title', 'author','publisher','publishing_date','status'],
-        tableData: '',
+        tableData: [],
         options: {
           headings: {
             no: 'No.',
@@ -45,23 +54,44 @@ export default {
         }
       }
   },
-  created: function() {
-    this.tableData = [
-      { no: 1, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 2, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 3, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 4, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 5, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 6, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 7, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 8, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 9, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 10, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 11, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 12, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" },
-      { no: 13, title: "new 자바의 정석", author: "20", publisher:"시나공", publishing_date:"2018", status:"신청중" }
-    ]
 
+  methods: {
+    searchBookList: function(){
+      this.api.searchBook(encodeURI(this.searchInputTitle)).then((data)=>{
+
+       this.convertToFinalResult(data.data);
+      })
+    },
+    convertToFinalResult: function(param){
+      let data = param.items;
+      let finalData = []
+
+      data.forEach((value, index) => {
+
+        let book = {}
+        book.no = index + 1
+        book.title = value.title
+        book.author = value.author
+        book.publisher = value.publisher
+        book.publishing_date = value.pubdate
+        book.isbn = value.isbn
+        book.status = ''
+
+        finalData.push(book);
+      })
+
+      this.tableData = finalData;
+    }
+  },
+  // 나중에 삭제
+  created: function(){
+    this.api.searchBook(encodeURI('java')).then((data)=>{
+
+      this.convertToFinalResult(data.data);
+      this.tableData[1].status = '보유중'
+      this.tableData[2].status = '신청중'
+//      console.log('tableDAta', this.tableData);
+    })
   }
 }
 </script>
