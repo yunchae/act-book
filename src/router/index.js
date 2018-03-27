@@ -4,6 +4,7 @@ import RegisterBookFunction from '@/components/RegisterBookFunction'
 import Table from '@/components/Table'
 import BookList from '@/components/BookList'
 import BookRequest from '@/components/BookRequest'
+import BookRequestList from '@/components/BookRequestList'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/bookrequest',
       name:'BookRequest',
       component: BookRequest
+    },
+    {
+      path: '/bookrequestlist',
+      name: 'BookRequestList',
+      component: BookRequestList
     }
   ],
   mode: 'history'
