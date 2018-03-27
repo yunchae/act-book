@@ -23,6 +23,9 @@
               <li id="btnBookRequest" v-bind:class="{active:isRequest}" @click="selectNav">
                 <router-link to="/bookrequest">도서신청</router-link>
               </li>
+              <li id="btnRequestList" v-bind:class="{active:isRequestList}" @click="selectNav">
+                <router-link to="/bookrequestlist">신청내역</router-link>
+              </li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -40,7 +43,8 @@ export default {
   data() {
     return {
       isList : false,
-      isRequest: false
+      isRequest: false,
+      isRequestList: false
     }
   },
   methods: {
@@ -48,9 +52,15 @@ export default {
         if(e.target.pathname === '/booklist'){
           this.isList = true;
           this.isRequest = false;
+          this.isRequestList = false;
         }else if(e.target.pathname === '/bookrequest'){
           this.isRequest = true;
           this.isList = false;
+          this.isRequestList = false;
+        }else if(e.target.pathname === '/bookrequestlist'){
+          this.isRequest = false;
+          this.isList = false;
+          this.isRequestList = true;
         }
     }
   },

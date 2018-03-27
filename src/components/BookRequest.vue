@@ -31,6 +31,7 @@
         <Button  v-if="props.row.status==''" @click="requestBook(props.row)" > 신청</Button>
         <p  v-else-if="props.row.status !=''" > {{props.row.status}}</p>
       </div>
+
     </v-client-table>
   </div>
 </template>
