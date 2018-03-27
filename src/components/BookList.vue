@@ -52,7 +52,7 @@ export default {
           title: "제목",
           author: "저자",
           publisher: "출판사",
-          publishedDate: "출판년도",
+          publishedDate: "출판일",
           status: "상태"
         },
         sortable: ['title', 'publishedDate', 'status'],
