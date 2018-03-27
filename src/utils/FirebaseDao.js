@@ -11,15 +11,33 @@ export default class FirebaseDao {
     this.database = firebase.database();
   }
 
-  readBooks(callback) {
-    this.database.ref('books/').orderByChild('title').once('value').then(function(snapshot){
+  readBooks(filterType, searchKeyword, callback) {
+    let query = this.database.ref('books/').orderByChild('status');
+
+    if(filterType !='전체'){
+      query = query.equalTo(filterType);
+    }
+
+    function isSearchedWithoutKeyword() {
+      return searchKeyword.length == 0;
+    }
+
+    function isSearchedWithKeywordAndMatched(searchKeyword, item) {
+      return searchKeyword.length > 0 && item.title.indexOf(searchKeyword) > -1;
+    }
+
+    query.once('value').then(function(snapshot){
       var retArr = [];
       var idx = 1;
       //Firebase database에서 조회 시 결과가 object로 넘어와서 배열로 변경 함
       snapshot.forEach((childSnapshot) => {
         var item = childSnapshot.val();
-        item.no = idx++;
-        retArr.push(item);
+
+        if (isSearchedWithKeywordAndMatched(searchKeyword, item)
+          || isSearchedWithoutKeyword()){
+          item.no = idx++;
+          retArr.push(item);
+        }
       })
       console.log(retArr);
       callback(retArr);
