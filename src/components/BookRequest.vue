@@ -17,7 +17,7 @@
 
 
     <v-client-table :data="tableData" :columns="columns" :options="options">
-      <div slot="title" slot-scope="props">
+      <div slot="title" slot-scope="props" style="text-align:left;">
         <popper :options="{placement: 'right'}">
         <div class="popper">
           <img style="width:100px; height:100px;" v-bind:src="props.row.image">
@@ -45,7 +45,6 @@
   import 'vue-popperjs/dist/css/vue-popper.css';
 
   const fb = new FirebaseDao();
-
 export default {
   name: 'BookRequest',
   components: {
@@ -125,10 +124,13 @@ export default {
         confirmButtonText: "<u>확인</u>",
       });
 
-      var book = new Book(bookInfo.isbn, bookTitle, bookInfo.author,bookInfo.publishedDate, bookInfo.publisher,"신청중");
+      var book = new Book(bookInfo.isbn, bookTitle, bookInfo.author, this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중");
       fb.insertBook(book);
 
       this.tableData[bookInfo.no - 1].status = '신청중'
+    },
+    changeDateFormat: function(date){
+      return date.substring(0,4) + '-' + date.substring(4,6) + '-' + date.substring(6,8)
     }
   }
 }

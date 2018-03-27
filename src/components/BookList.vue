@@ -31,7 +31,7 @@
 
 
     <v-client-table :data="tableData" :columns="columns" :options="options">
-
+      <div slot="title" slot-scope="props" style="text-align:left;">{{ props.row.title }}</div>
     </v-client-table>
   </div>
 </template>
