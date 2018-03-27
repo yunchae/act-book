@@ -60,10 +60,12 @@ export default class FirebaseDao {
       snapshot.forEach((childSnapshot) => {
         var item = childSnapshot.val();
 
-        if (searchKeyword.length == 0
-          || (searchKeyword.length > 0 && item.title.toUpperCase().indexOf(searchKeyword.toUpperCase()) > -1)){
-          item.no = idx++;
-          retArr.push(item);
+        if(item.status !='취소') {
+          if (searchKeyword.length == 0
+            || (searchKeyword.length > 0 && item.title.toUpperCase().indexOf(searchKeyword.toUpperCase()) > -1)) {
+            item.no = idx++;
+            retArr.push(item);
+          }
         }
       })
       console.log(retArr);
