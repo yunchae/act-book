@@ -8,7 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import BootstrapVue from 'bootstrap-vue'
 import {ClientTable, Event} from 'vue-tables-2'
 import NewBook from './utils/Book'
+import VueSweetAlert2  from 'vue-sweetalert2'
 
+Vue.use(VueSweetAlert2)
 Vue.use(ClientTable)
 Vue.use(BootstrapVue)
 
