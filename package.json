@@ -19,9 +19,11 @@
     "firebase": "^4.11.0",
     "sinon": "^4.4.8",
     "vue": "^2.5.2",
+    "vue-popperjs": "^1.2.6",
     "vue-resource": "^1.5.0",
     "vue-route": "^1.5.1",
     "vue-router": "^3.0.1",
+    "vue-sweetalert2": "^1.2.4",
     "vue-tables-2": "^1.3.83",
     "vue-test-utils": "^1.0.0-beta.11",
     "vuetable": "^1.5.12"
