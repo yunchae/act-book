@@ -17,7 +17,7 @@
       <!--<div class="row">-->
         <div class="col-lg-6" style="float: right; padding-right: 0px">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" id="txtSearch" v-model="keyword"/>
+            <input type="text" class="form-control" placeholder="Search" id="txtSearch" v-model="keyword" @keyup.enter="readBooksByFilter"/>
             <div class="input-group-btn">
               <button class="btn btn-primary" type="submit" @click="readBooksByFilter">
                 <span class="glyphicon glyphicon-search"></span>
@@ -30,7 +30,9 @@
 
 
 
-    <v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table>
+    <v-client-table :data="tableData" :columns="columns" :options="options">
+
+    </v-client-table>
   </div>
 </template>
 
