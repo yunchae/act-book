@@ -11,6 +11,21 @@ export default class FirebaseDao {
     this.database = firebase.database();
   }
 
+  readAllBooks(callback){
+    this.database.ref('books/').once('value').then(function(snapshot){
+      var returnArr = [];
+
+      snapshot.forEach(function(childSnapshot) {
+        var item = childSnapshot.val();
+        item.key = childSnapshot.key;
+
+        returnArr.push(item);
+      });
+
+      return callback(returnArr);
+    })
+  }
+
   readBooks(filterType, searchKeyword, callback) {
     let query = this.database.ref('books/').orderByChild('status');
 
@@ -23,7 +38,7 @@ export default class FirebaseDao {
     }
 
     function isSearchedWithKeywordAndMatched(searchKeyword, item) {
-      return searchKeyword.length > 0 && item.title.indexOf(searchKeyword) > -1;
+      return searchKeyword.length > 0 && item.title.toUpperCase().indexOf(searchKeyword.toUpperCase()) > -1;
     }
 
     query.once('value').then(function(snapshot){
