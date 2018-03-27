@@ -17,10 +17,10 @@
 
 
     <v-client-table :data="tableData" :columns="columns" :options="options">
-      <Button v-if="props.row.status==''" slot="status" slot-scope="props"> {{props.row.status}} 신청</Button>
-      <Button v-else-if="props.row.status=='' slot="status" slot-scope="props"> {{props.row.status}} 신청</Button>
-
-      <Button v-if="props.row.status==''" slot="status" slot-scope="props"> {{props.row.status}} 신청</Button>
+      <div slot="status" slot-scope="props">
+        <Button v-if="props.row.status==''"  > 신청</Button>
+        <p v-else-if="props.row.status !=''" > {{props.row.status}}</p>
+      </div>
     </v-client-table>
   </div>
 </template>
@@ -82,16 +82,6 @@ export default {
 
       this.tableData = finalData;
     }
-  },
-  // 나중에 삭제
-  created: function(){
-    this.api.searchBook(encodeURI('java')).then((data)=>{
-
-      this.convertToFinalResult(data.data);
-      this.tableData[1].status = '보유중'
-      this.tableData[2].status = '신청중'
-//      console.log('tableDAta', this.tableData);
-    })
   }
 }
 </script>
