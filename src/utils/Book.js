@@ -12,7 +12,7 @@
 // }
 
 class Book{
-  constructor(isbn, title, author, publishedDate,publisher, status){
+  constructor(isbn, title, author, publishedDate,publisher, status, link, image){
     this.isbn = isbn;
     this.title=title;
     this.author=author;
@@ -21,9 +21,11 @@ class Book{
     this.status=status;
     this.createdDate=new Date().toISOString();
     this.updatedDate=new Date().toISOString();
+    this.link=link;
+    this.image=image
   }
 }
 
 
-export default (isbn, title, author, publishingDate, publisher, status) =>
-                new Book(isbn, title, author, publishingDate, publisher, status);
+export default (isbn, title, author, publishingDate, publisher, status, link, image) =>
+                new Book(isbn, title, author, publishingDate, publisher, status, link, image);

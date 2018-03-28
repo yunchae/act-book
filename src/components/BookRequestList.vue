@@ -17,7 +17,11 @@
     </div>
 
     <v-client-table :data="tableData" :columns="columns" :options="options">
-      <div slot="title" slot-scope="props" style="text-align:left;">{{ props.row.title }}</div>
+      <div slot="title" slot-scope="props" style="text-align:left;">
+          <a v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
+          </a>
+      </div>
+
       <div slot="createdDate" slot-scope="props">{{ props.row.createdDate.substring(0,10)}}</div>
 
       <div slot="status" slot-scope="props">

@@ -76,13 +76,16 @@ export default {
   methods: {
     searchBookList: function(){
       this.api.searchBook(encodeURI(this.searchInputTitle)).then((data)=>{
+        //var res = $.parseJSON('[' + data.data + ']');
         fb.readAllBooks((registedBooks) => {
 //          console.log('data.data',data.data)
+          //this.convertToFinalResult(res[0].items, registedBooks);
           this.convertToFinalResult(data.data, registedBooks);
         })
       })
     },
     convertToFinalResult: function(param, registedBooks){
+      //let data = param;
       let data = param.items;
       let finalData = []
 
@@ -116,7 +119,7 @@ export default {
     },
     requestBook: function (bookInfo) {
 
-      let bookTitle = bookInfo.title.replace("<b>","").replace("</b>","")
+      let bookTitle = bookInfo.title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")
 
       this.$swal({
         title: "<i>신청완료!</i>",
@@ -124,7 +127,7 @@ export default {
         confirmButtonText: "<u>확인</u>",
       });
 
-      var book = new Book(bookInfo.isbn, bookTitle, bookInfo.author, this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중");
+      var book = new Book(bookInfo.isbn, bookTitle, bookInfo.author, this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image);
       fb.insertBook(book);
 
       this.tableData[bookInfo.no - 1].status = '신청중'
