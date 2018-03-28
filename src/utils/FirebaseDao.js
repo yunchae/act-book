@@ -88,7 +88,9 @@ export default class FirebaseDao {
       publisher : book.publisher,
       createdDate : book.createdDate,
       updatedDate : book.updatedDate,
-      status : book.status
+      status : book.status,
+      link : book.link,
+      image : book.image
     })
   }
 
