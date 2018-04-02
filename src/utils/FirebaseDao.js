@@ -86,8 +86,14 @@ export default class FirebaseDao {
     })
   }
 
-  readAllRequestedBooks(searchKeyword, callback) {
-    let booksQuery = this.firestore.collection('books').orderBy('createdDate', 'desc').orderBy('title', 'asc')
+  readAllRequestedBooks(filterType, searchKeyword, callback) {
+    let booksQuery = this.firestore.collection('books')
+
+    if (filterType != '전체') {
+      booksQuery = booksQuery.where('status', '==', filterType).orderBy('title', 'asc')
+    } else {
+      booksQuery = booksQuery.orderBy('createdDate', 'desc').orderBy('title', 'asc');
+    }
 
     booksQuery.get().then(snapshot => {
       var returnArr = [];

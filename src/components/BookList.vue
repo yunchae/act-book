@@ -90,9 +90,7 @@ export default {
     setTableData: function(value){
       this.tableData = value;
     }
-
   }
-
 }
 </script>
 

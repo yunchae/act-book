@@ -3,6 +3,20 @@
   <div id="bookList">
 
     <div class="btn-group" style="margin-bottom: 10px">
+      <div style="margin-left: 5px; float: left" >
+        <label class="radio-inline">
+          <input id='all' type="radio" name="optradio" value="전체" v-model="searchOpt" @click="getBooksByStatus">전체
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio" value="보유" v-model="searchOpt" @click="getBooksByStatus">보유
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio" value="신청중" v-model="searchOpt" @click="getBooksByStatus">신청중
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio" value="취소" v-model="searchOpt" @click="getBooksByStatus">취소
+        </label>
+      </div>
       <div class="col-lg-6" style="float: right; padding-right: 0px">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search" id="txtSearch" v-model="keyword" @keyup.enter="readBooksByFilter"/>
@@ -44,6 +58,7 @@
     name: 'BookRequestList',
     data: function () {
       return {
+        searchOpt: '전체',
         keyword: '',
         tableData: [],
         columns: ['no', 'title', 'author', 'publisher', 'dateForMobile', 'publishedDate', 'createdDate', 'applier','status'],
@@ -76,12 +91,15 @@
       },
       readBooksByFilter: function(){
 //        console.log('keyword: ',this.keyword);
-        fb.readAllRequestedBooks(this.keyword, this.setTableData);
+        fb.readAllRequestedBooks(this.searchOpt, this.keyword, this.setTableData);
+      },
+      getBooksByStatus: function(e){
+        this.searchOpt = e.target.value;
+        this.readBooksByFilter();
       },
       setTableData: function(value){
         this.tableData = value;
       }
-
     }
 
   }
