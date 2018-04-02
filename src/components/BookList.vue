@@ -3,7 +3,7 @@
   <div id="bookList">
 
     <div class="btn-group" style="margin-bottom: 10px">
-<div style="margin-left: 5px; float: left" >
+<div style="margin-left: 5px; float: left;margin-bottom: 10px" >
       <label class="radio-inline">
         <input id='all' type="radio" name="optradio" value="전체" v-model="searchOpt" @click="getBooksByStatus">전체
       </label>
@@ -14,7 +14,7 @@
         <input type="radio" name="optradio" value="신청중" v-model="searchOpt" @click="getBooksByStatus">신청중
       </label>
 </div>
-      <br/><br/>
+      <!--<br/><br/>-->
       <!--<div class="row">-->
         <div class="col-lg-6" style="float: right; padding-right: 0px">
           <div class="input-group">
