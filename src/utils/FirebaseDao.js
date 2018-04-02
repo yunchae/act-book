@@ -41,7 +41,7 @@ export default class FirebaseDao {
           returnArr.push(item);
         }
       });
-      console.log(returnArr)
+      // console.log(returnArr)
       return callback(returnArr);
     })
   }
@@ -68,7 +68,7 @@ export default class FirebaseDao {
           }
         }
       })
-      console.log(retArr);
+      // console.log(retArr);
       callback(retArr);
     })
   }

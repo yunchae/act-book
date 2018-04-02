@@ -71,7 +71,7 @@
 
       },
       readBooksByFilter: function(){
-        console.log('keyword: ',this.keyword);
+//        console.log('keyword: ',this.keyword);
         fb.readAllRequestedBooks(this.keyword, this.setTableData);
       },
       setTableData: function(value){
