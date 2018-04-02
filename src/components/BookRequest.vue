@@ -28,7 +28,7 @@
       </div>
 
       <div slot="status" slot-scope="props">
-        <Button  v-if="props.row.status==''" @click="requestBook(props.row)" > 신청</Button>
+        <Button  v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
         <p  v-else-if="props.row.status !=''" > {{props.row.status}}</p>
       </div>
 
