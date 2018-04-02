@@ -44,7 +44,7 @@
       return {
         keyword: '',
         tableData: [],
-        columns: ['no', 'title', 'author', 'publisher', 'publishedDate', 'createdDate','status'],
+        columns: ['no', 'title', 'author', 'publisher', 'publishedDate', 'createdDate', 'applier','status'],
         options: {
           headings: {
             no: 'No.',
@@ -53,6 +53,7 @@
             publisher: "출판사",
             publishedDate: "출판일",
             createdDate: "신청일",
+            applier : '신청자',
             status: "상태"
           },
 //          sortable: ['title', 'publishedDate', 'status'],

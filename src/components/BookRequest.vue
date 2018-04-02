@@ -26,6 +26,7 @@
         </a>
       </popper>
       </div>
+      <div slot="author" slot-scope="props" v-html="props.row.author"></div>
 
       <div slot="status" slot-scope="props">
         <Button  v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
@@ -116,27 +117,31 @@ export default {
     },
     requestBook: function (bookInfo) {
 
-      let bookTitle = '<div>제목 : ' + this.removeBTag(bookInfo.title) + '</div>';
+      let bookTitle = this.removeBTag(bookInfo.title) ;
 
       this.$swal({
         // add a custom html tags by defining a html method.
-        html: bookTitle,
+        html: '<div>제목 : ' + bookTitle+ '</div>',
         input: 'text',
         inputPlaceholder: 'Enter your name here',
         showCloseButton: true,
         showCancelButton: true,
         focusConfirm: false,
       }).then((result) => {
+
         if(result.value === ""){
           this.$swal(
             '이름이 입력되지 않았습니다.'
           )
         }else if(result.value !== undefined){
+
+          const applier = result.value;
           this.$swal({
             title: '책 신청 완료',
             html: bookTitle,
           }).then((result) => {
-            var book = new Book(bookInfo.isbn, bookTitle, removeBTag(bookInfo.author), this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image);
+            console.log('applier : ', applier);
+            var book = new Book(bookInfo.isbn, bookTitle, this.removeBTag(bookInfo.author), this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image, applier);
             fb.insertBook(book);
             this.tableData[bookInfo.no - 1].status = '신청중'
           })
