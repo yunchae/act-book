@@ -16,22 +16,22 @@
 
 
 
-    <div class="act-table-responsive book-request-table">
-      <v-client-table :data="tableData" :columns="columns" :options="options">
-        <div slot="title" slot-scope="props" style="text-align:left;">
-          <popper :options="{placement: 'right'}">
-            <div class="popper">
-              <img style="width:100px; height:100px;" v-bind:src="props.row.image">
-            </div>
-            <a slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
-            </a>
-           </popper>
+    <v-client-table :data="tableData" :columns="columns" :options="options">
+      <div slot="title" slot-scope="props" style="text-align:left;">
+        <popper :options="{placement: 'right'}">
+        <div class="popper">
+          <img style="width:100px; height:100px;" v-bind:src="props.row.image">
         </div>
-        <div slot="author" slot-scope="props" v-html="props.row.author"></div>
-        <div slot="status" slot-scope="props">
-          <Button class="btn btn-primary" v-if="props.row.status==''" @click="requestBook(props.row)" > 신청</Button>
-          <p  v-else-if="props.row.status !=''" > {{props.row.status}}</p>
-        </div>
+        <a slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
+        </a>
+      </popper>
+      </div>
+      <div slot="author" slot-scope="props" v-html="props.row.author"></div>
+
+      <div slot="status" slot-scope="props">
+        <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
+        <p  v-else-if="props.row.status !=''" > {{props.row.status}}</p>
+      </div>
 
         <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}} </div>
       </v-client-table>
@@ -79,13 +79,7 @@ export default {
   methods: {
     searchBookList: function(){
       this.api.searchBook(encodeURI(this.searchInputTitle)).then((data)=>{
-        //var res = $.parseJSON('[' + data.data + ']');
-
-//        console.log('data.data',data.data)
-
         fb.readAllBooksForCheckIFWeHave((registedBooks) => {
-//          console.log('data.data', registedBooks)
-          //this.convertToFinalResult(res[0].items, registedBooks);
           this.convertToFinalResult(data.data, registedBooks);
         })
       })
@@ -125,25 +119,39 @@ export default {
     },
     requestBook: function (bookInfo) {
 
-      this.removeBTag(bookInfo);
+      let bookTitle = this.removeBTag(bookInfo.title) ;
 
       this.$swal({
-        title: "<i>신청완료!</i>",
-        html: bookInfo.title,
-        confirmButtonText: "<u>확인</u>",
+        // add a custom html tags by defining a html method.
+        html: '<div>제목 : ' + bookTitle+ '</div>',
+        input: 'text',
+        inputPlaceholder: 'Enter your name here',
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+      }).then((result) => {
+
+        if(result.value === ""){
+          this.$swal(
+            '이름이 입력되지 않았습니다.'
+          )
+        }else if(result.value !== undefined){
+
+          const applier = result.value;
+          this.$swal({
+            title: '책 신청 완료',
+            html: bookTitle,
+          }).then((result) => {
+            // console.log('applier : ', applier);
+            var book = new Book(bookInfo.isbn, bookTitle, this.removeBTag(bookInfo.author), this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image, applier);
+            fb.insertBook(book);
+            this.tableData[bookInfo.no - 1].status = '신청중'
+          })
+        }
       });
-
-      var book = new Book(bookInfo.isbn, bookInfo.title, bookInfo.author, this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image);
-      fb.insertBook(book);
-
-      this.tableData[bookInfo.no - 1].status = '신청중'
     },
-    removeBTag: function (bookInfo) {
-      bookInfo.title = bookInfo.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
-      bookInfo.author = bookInfo.author.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
-      bookInfo.publisher = bookInfo.publisher.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
-
-
+    removeBTag: function (beforeBtag) {
+      return beforeBtag.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
     },
     changeDateFormat: function(date){
       return date.substring(0,4) + '-' + date.substring(4,6) + '-' + date.substring(6,8)
