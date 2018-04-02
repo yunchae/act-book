@@ -24,7 +24,7 @@ export default class FirebaseDao {
     if (filterType != '전체') {
       booksQuery = booksQuery.where('status', '==', filterType).orderBy('title', 'asc')
     } else {
-      booksQuery.orderBy('status', 'asc').orderBy('title', 'asc');
+      booksQuery = booksQuery.orderBy('status', 'asc').orderBy('title', 'asc');
     }
 
     booksQuery.get().then(snapshot => {
