@@ -2,7 +2,7 @@
 
   <div id="bookRequest">
     <div class="btn-group" style="margin-bottom: 10px;">
-        <div class="col-xs-6 " style="float: right;padding-right: 0px">
+        <div class="col-lg-6 " style="float: right;padding-right: 0px">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" id="txtSearch" v-model="searchInputTitle" @keyup.enter="searchBookList"/>
             <div class="input-group-btn">
@@ -12,28 +12,30 @@
             </div>
           </div>
         </div>
-</div>
+    </div>
 
 
-
-    <v-client-table :data="tableData" :columns="columns" :options="options">
-      <div slot="title" slot-scope="props" style="text-align:left;">
-        <popper :options="{placement: 'right'}">
-        <div class="popper">
-          <img style="width:100px; height:100px;" v-bind:src="props.row.image">
+    <div class="book-request-table act-table-responsive">
+      <v-client-table :data="tableData" :columns="columns" :options="options">
+        <div slot="title" slot-scope="props" style="text-align:left;">
+          <popper :options="{placement: 'right'}">
+          <div class="popper">
+            <img style="width:100px; height:100px;" v-bind:src="props.row.image">
+          </div>
+          <a slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
+          </a>
+        </popper>
         </div>
-        <a slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
-        </a>
-      </popper>
-      </div>
-      <div slot="author" slot-scope="props" v-html="props.row.author"></div>
+        <div slot="author" slot-scope="props" v-html="props.row.author"></div>
 
-      <div slot="status" slot-scope="props">
-        <Button  v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
-        <p  v-else-if="props.row.status !=''" > {{props.row.status}}</p>
-      </div>
+        <div slot="status" slot-scope="props">
+          <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
+          <p  v-else-if="props.row.status !=''" > {{props.row.status}}</p>
+        </div>
 
-    </v-client-table>
+          <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}} </div>
+        </v-client-table>
+    </div>
   </div>
 </template>
 
@@ -54,7 +56,7 @@ export default {
   data: function(){
       return {
         searchInputTitle:'',
-        columns: ['no', 'title', 'author','publisher','publishedDate','status'],
+        columns: ['no', 'title', 'author','publisher', 'dateForMobile', 'publishedDate','status'],
         tableData: [],
         options: {
           headings: {
@@ -62,7 +64,7 @@ export default {
             title: "제목",
             author: "저자",
             publisher: "출판사",
-            publishedDate: "출판년도",
+            publishedDate: "출판일",
             status: "상태"
           },
           filterable: false, // 필터 사용 여부 또는 필터 적용할 컬럼 설정
@@ -159,19 +161,23 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-/*h1, h2 {*/
-  /*font-weight: normal;*/
-/*}*/
-/*ul {*/
-  /*list-style-type: none;*/
-  /*padding: 0;*/
-/*}*/
-/*li {*/
-  /*display: inline-block;*/
-  /*margin: 0 10px;*/
-/*}*/
-/*a {*/
-  /*color: #42b983;*/
-/*}*/
+<style>
+  .book-request-table thead th:nth-child(5){
+    display: none;
+  }
+  .book-request-table td:nth-child(5){
+    display: none;
+  }
+  @media only screen and (max-width: 800px) {
+
+    .book-request-table td:nth-child(6){
+      display: none;
+    }
+    .book-request-table thead th:nth-child(5){
+      display: block;
+    }
+    .book-request-table td:nth-child(5){
+      display: block;
+    }
+  }
 </style>

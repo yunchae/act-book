@@ -14,6 +14,7 @@
         <input type="radio" name="optradio" value="신청중" v-model="searchOpt" @click="getBooksByStatus">신청중
       </label>
 </div>
+      <br/><br/>
       <!--<div class="row">-->
         <div class="col-lg-6" style="float: right; padding-right: 0px">
           <div class="input-group">
@@ -30,9 +31,17 @@
 
 
 
-    <v-client-table :data="tableData" :columns="columns" :options="options">
-      <div slot="title" slot-scope="props" style="text-align:left;"><a v-bind:href="props.row.link"  target="_blank" v-html="props.row.title"/></div>
-    </v-client-table>
+    <div class="book-list-table act-table-responsive">
+      <v-client-table :data="tableData" :columns="columns" :options="options">
+        <div slot="title" slot-scope="props" style="text-align:left;">
+          <a v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
+          </a>
+        </div>
+
+        <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}} </div>
+
+      </v-client-table>
+    </div>
   </div>
 </template>
 
@@ -45,7 +54,7 @@ export default {
       searchOpt: '전체',
       keyword: '',
       tableData: [],
-      columns: ['no', 'title', 'author', 'publisher', 'publishedDate', 'status'],
+      columns: ['no', 'title', 'author', 'publisher','dateForMobile', 'publishedDate', 'status'],
       options: {
         headings: {
           no: 'No.',
@@ -88,19 +97,23 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-/*h1, h2 {*/
-  /*font-weight: normal;*/
-/*}*/
-/*ul {*/
-  /*list-style-type: none;*/
-  /*padding: 0;*/
-/*}*/
-/*li {*/
-  /*display: inline-block;*/
-  /*margin: 0 10px;*/
-/*}*/
-/*a {*/
-  /*color: #42b983;*/
-/*}*/
+<style>
+  .book-list-table thead th:nth-child(5){
+    display: none;
+  }
+  .book-list-table td:nth-child(5){
+    display: none;
+  }
+  @media only screen and (max-width: 800px) {
+
+    .book-list-table td:nth-child(6){
+      display: none;
+    }
+    .book-list-table thead th:nth-child(5){
+      display: block;
+    }
+    .book-list-table td:nth-child(5){
+      display: block;
+    }
+  }
 </style>

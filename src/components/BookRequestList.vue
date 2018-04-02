@@ -15,23 +15,25 @@
       </div>
       <!--</div>-->
     </div>
+    <div class="act-table-responsive book-request-list-table">
+      <v-client-table :data="tableData" :columns="columns" :options="options" >
+        <div slot="title" slot-scope="props" style="text-align:left;">
+            <a v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
+            </a>
+        </div>
 
-    <v-client-table :data="tableData" :columns="columns" :options="options">
-      <div slot="title" slot-scope="props" style="text-align:left;">
-          <a v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
-          </a>
-      </div>
+        <div slot="createdDate" slot-scope="props">{{ props.row.createdDate.substring(0,10)}}</div>
+        <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}} / 신청일 : {{props.row.createdDate.substring(0,10)}}</div>
 
-      <div slot="createdDate" slot-scope="props">{{ props.row.createdDate.substring(0,10)}}</div>
-
-      <div slot="status" slot-scope="props">
-        <select  v-model="props.row.status" @change="statusChanged(props.row.isbn, $event)">
-          <option>신청중</option>
-          <option>보유</option>
-          <option>취소</option>
-        </select>
-      </div>
-    </v-client-table>
+        <div slot="status" slot-scope="props">
+          <select  v-model="props.row.status" @change="statusChanged(props.row.no, props.row.isbn, $event)">
+            <option>신청중</option>
+            <option>보유</option>
+            <option>취소</option>
+          </select>
+        </div>
+      </v-client-table>
+    </div>
   </div>
 </template>
 
@@ -44,7 +46,7 @@
       return {
         keyword: '',
         tableData: [],
-        columns: ['no', 'title', 'author', 'publisher', 'publishedDate', 'createdDate', 'applier','status'],
+        columns: ['no', 'title', 'author', 'publisher', 'dateForMobile', 'publishedDate', 'createdDate', 'applier','status'],
         options: {
           headings: {
             no: 'No.',
@@ -67,9 +69,10 @@
       this.readBooksByFilter();
     },
     methods: {
-      statusChanged: function(isbn, e){
-        fb.updateBook(isbn, e.target.value);
-
+      statusChanged: function(rowNo, isbn, e){
+        let selectedStatus = e.target.value;
+        fb.updateBook(isbn, selectedStatus);
+        this.tableData[rowNo-1].status = selectedStatus;
       },
       readBooksByFilter: function(){
 //        console.log('keyword: ',this.keyword);
@@ -85,19 +88,25 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  /*h1, h2 {*/
-  /*font-weight: normal;*/
-  /*}*/
-  /*ul {*/
-  /*list-style-type: none;*/
-  /*padding: 0;*/
-  /*}*/
-  /*li {*/
-  /*display: inline-block;*/
-  /*margin: 0 10px;*/
-  /*}*/
-  /*a {*/
-  /*color: #42b983;*/
-  /*}*/
+<style>
+  .book-request-list-table thead th:nth-child(5){
+    display: none;
+  }
+  .book-request-list-table td:nth-child(5){
+    display: none;
+  }
+  @media only screen and (max-width: 800px) {
+    .book-request-list-table td:nth-child(7){
+      display: none;
+    }
+    .book-request-list-table td:nth-child(6){
+      display: none;
+    }
+    .book-request-list-table thead th:nth-child(5){
+    display: block;
+    }
+    .book-request-list-table td:nth-child(5){
+      display: block;
+    }
+  }
 </style>
