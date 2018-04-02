@@ -15,7 +15,7 @@
       </div>
       <!--</div>-->
     </div>
-    <div class="act-table-responsive">
+    <div class="act-table-responsive book-request-list-table">
       <v-client-table :data="tableData" :columns="columns" :options="options" >
         <div slot="title" slot-scope="props" style="text-align:left;">
             <a v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
@@ -88,23 +88,23 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-  .act-table-responsive thead th:nth-child(5){
+  .book-request-list-table thead th:nth-child(5){
     display: none;
   }
-  .act-table-responsive td:nth-child(5){
+  .book-request-list-table td:nth-child(5){
     display: none;
   }
   @media only screen and (max-width: 800px) {
-    .act-table-responsive td:nth-child(7){
+    .book-request-list-table td:nth-child(7){
       display: none;
     }
-    .act-table-responsive td:nth-child(6){
+    .book-request-list-table td:nth-child(6){
       display: none;
     }
-    .act-table-responsive thead th:nth-child(5){
+    .book-request-list-table thead th:nth-child(5){
     display: block;
     }
-    .act-table-responsive td:nth-child(5){
+    .book-request-list-table td:nth-child(5){
       display: block;
     }
   }

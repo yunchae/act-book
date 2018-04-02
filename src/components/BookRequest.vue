@@ -2,7 +2,7 @@
 
   <div id="bookRequest">
     <div class="btn-group" style="margin-bottom: 10px;">
-        <div class="col-xs-6 " style="float: right;padding-right: 0px">
+        <div class="col-lg-6 " style="float: right;padding-right: 0px">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" id="txtSearch" v-model="searchInputTitle" @keyup.enter="searchBookList"/>
             <div class="input-group-btn">
@@ -16,20 +16,20 @@
 
 
 
-    <div class="act-table-responsive">
+    <div class="act-table-responsive book-request-table">
       <v-client-table :data="tableData" :columns="columns" :options="options">
         <div slot="title" slot-scope="props" style="text-align:left;">
           <popper :options="{placement: 'right'}">
-          <div class="popper">
-            <img style="width:100px; height:100px;" v-bind:src="props.row.image">
-          </div>
-          <a slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
-          </a>
-        </popper>
+            <div class="popper">
+              <img style="width:100px; height:100px;" v-bind:src="props.row.image">
+            </div>
+            <a slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
+            </a>
+           </popper>
         </div>
-
+        <div slot="author" slot-scope="props" v-html="props.row.author"></div>
         <div slot="status" slot-scope="props">
-          <Button  v-if="props.row.status==''" @click="requestBook(props.row)" > 신청</Button>
+          <Button class="btn btn-primary" v-if="props.row.status==''" @click="requestBook(props.row)" > 신청</Button>
           <p  v-else-if="props.row.status !=''" > {{props.row.status}}</p>
         </div>
 
@@ -125,22 +125,25 @@ export default {
     },
     requestBook: function (bookInfo) {
 
-      let bookTitle = this.removeBTag(bookInfo);
+      this.removeBTag(bookInfo);
 
       this.$swal({
         title: "<i>신청완료!</i>",
-        html: bookTitle,
+        html: bookInfo.title,
         confirmButtonText: "<u>확인</u>",
       });
 
-      var book = new Book(bookInfo.isbn, bookTitle, bookInfo.author, this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image);
+      var book = new Book(bookInfo.isbn, bookInfo.title, bookInfo.author, this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image);
       fb.insertBook(book);
 
       this.tableData[bookInfo.no - 1].status = '신청중'
     },
     removeBTag: function (bookInfo) {
-      let bookTitle = bookInfo.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
-      return bookTitle;
+      bookInfo.title = bookInfo.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
+      bookInfo.author = bookInfo.author.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
+      bookInfo.publisher = bookInfo.publisher.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
+
+
     },
     changeDateFormat: function(date){
       return date.substring(0,4) + '-' + date.substring(4,6) + '-' + date.substring(6,8)
@@ -151,21 +154,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-  .act-table-responsive thead th:nth-child(5){
+  .book-request-table thead th:nth-child(5){
     display: none;
   }
-  .act-table-responsive td:nth-child(5){
+  .book-request-table td:nth-child(5){
     display: none;
   }
   @media only screen and (max-width: 800px) {
 
-    .act-table-responsive td:nth-child(6){
+    .book-request-table td:nth-child(6){
       display: none;
     }
-    .act-table-responsive thead th:nth-child(5){
+    .book-request-table thead th:nth-child(5){
       display: block;
     }
-    .act-table-responsive td:nth-child(5){
+    .book-request-table td:nth-child(5){
       display: block;
     }
   }
