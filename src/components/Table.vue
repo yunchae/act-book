@@ -1,29 +1,44 @@
 <template>
   <div id="people">
     <!--<v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table>-->
-    <v-client-table :data="tableData" :columns="columns">
-      <a slot="edit" slot-scope="props" class="fa fa-edit" :href="edit(props.row.id)"></a>
-    </v-client-table>
   </div>
 </template>
 
 <script>
+
+  import resource from '../assets/resources'
+  import $ from 'jquery';
+  import FirebaseDao from '../utils/FirebaseDao'
+
+  const fb = new FirebaseDao();
+
 export default {
   name: 'Table',
-  data :{
-      columns: ['id', 'name', 'age'],
-      tableData: [
-        { id: 1, name: "John", age: "20" },
-        { id: 2, name: "Jane", age: "24" },
-        { id: 3, name: "Susan", age: "16" },
-        { id: 4, name: "Chris", age: "55" },
-        { id: 5, name: "Dan", age: "40" }
-      ],
-      options: {
-        // see the options API
-        //https://www.npmjs.com/package/vue-tables-2
-      }
+  data : function() {
+    return {
+      books : []
     }
+  },
+  created : function() {
+
+    let data = resource.BOOKS;
+
+    // $.map(data.books, (bookInfo) => {
+    //
+    //     var book = this.createBook(bookInfo.isbn, bookInfo.title,bookInfo.author, bookInfo.publishedDate, bookInfo.publisher, bookInfo.status, bookInfo.link, bookInfo.image, '');
+    //     fb.insertBook(book);
+    //   });
+
+    // console.log('data', data)
+    // console.log('arr', arr)
+
+    // arr.forEach( (bookInfo) =>{
+    //   var book = this.createBook(bookInfo.isbn, bookInfo.title,bookInfo.author, bookInfo.publishedDate, bookInfo.publisher, bookInfo.status, bookInfo.link, bookInfo.image, '');
+    //   fb.insertBook(book);
+    // })
+
+
+  }
 }
 </script>
 

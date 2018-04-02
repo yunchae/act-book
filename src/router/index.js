@@ -15,11 +15,11 @@ export default new Router({
       name: 'RegisterBookFunction',
       component: RegisterBookFunction
     },
-    {
-      path: '/table',
-      name: 'Table',
-      component: Table
-    },
+    // {
+    //   path: '/table',
+    //   name: 'Table',
+    //   component: Table
+    // },
     {
       path: '/booklist',
       name:'BookList',
