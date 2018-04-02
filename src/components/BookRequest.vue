@@ -76,13 +76,7 @@ export default {
   methods: {
     searchBookList: function(){
       this.api.searchBook(encodeURI(this.searchInputTitle)).then((data)=>{
-        //var res = $.parseJSON('[' + data.data + ']');
-
-//        console.log('data.data',data.data)
-
         fb.readAllBooksForCheckIFWeHave((registedBooks) => {
-//          console.log('data.data', registedBooks)
-          //this.convertToFinalResult(res[0].items, registedBooks);
           this.convertToFinalResult(data.data, registedBooks);
         })
       })
@@ -122,22 +116,35 @@ export default {
     },
     requestBook: function (bookInfo) {
 
-      let bookTitle = this.removeBTag(bookInfo);
+      let bookTitle = '<div>제목 : ' + this.removeBTag(bookInfo.title) + '</div>';
 
       this.$swal({
-        title: "<i>신청완료!</i>",
+        // add a custom html tags by defining a html method.
         html: bookTitle,
-        confirmButtonText: "<u>확인</u>",
+        input: 'text',
+        inputPlaceholder: 'Enter your name here',
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+      }).then((result) => {
+        if(result.value === ""){
+          this.$swal(
+            '이름이 입력되지 않았습니다.'
+          )
+        }else if(result.value !== undefined){
+          this.$swal({
+            title: '책 신청 완료',
+            html: bookTitle,
+          }).then((result) => {
+            var book = new Book(bookInfo.isbn, bookTitle, removeBTag(bookInfo.author), this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image);
+            fb.insertBook(book);
+            this.tableData[bookInfo.no - 1].status = '신청중'
+          })
+        }
       });
-
-      var book = new Book(bookInfo.isbn, bookTitle, bookInfo.author, this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image);
-      fb.insertBook(book);
-
-      this.tableData[bookInfo.no - 1].status = '신청중'
     },
-    removeBTag: function (bookInfo) {
-      let bookTitle = bookInfo.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
-      return bookTitle;
+    removeBTag: function (beforeBtag) {
+      return beforeBtag.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
     },
     changeDateFormat: function(date){
       return date.substring(0,4) + '-' + date.substring(4,6) + '-' + date.substring(6,8)
