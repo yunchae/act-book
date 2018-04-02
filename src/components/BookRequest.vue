@@ -16,23 +16,26 @@
 
 
 
-    <v-client-table :data="tableData" :columns="columns" :options="options">
-      <div slot="title" slot-scope="props" style="text-align:left;">
-        <popper :options="{placement: 'right'}">
-        <div class="popper">
-          <img style="width:100px; height:100px;" v-bind:src="props.row.image">
+    <div class="act-table-responsive">
+      <v-client-table :data="tableData" :columns="columns" :options="options">
+        <div slot="title" slot-scope="props" style="text-align:left;">
+          <popper :options="{placement: 'right'}">
+          <div class="popper">
+            <img style="width:100px; height:100px;" v-bind:src="props.row.image">
+          </div>
+          <a slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
+          </a>
+        </popper>
         </div>
-        <a slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
-        </a>
-      </popper>
-      </div>
 
-      <div slot="status" slot-scope="props">
-        <Button  v-if="props.row.status==''" @click="requestBook(props.row)" > 신청</Button>
-        <p  v-else-if="props.row.status !=''" > {{props.row.status}}</p>
-      </div>
+        <div slot="status" slot-scope="props">
+          <Button  v-if="props.row.status==''" @click="requestBook(props.row)" > 신청</Button>
+          <p  v-else-if="props.row.status !=''" > {{props.row.status}}</p>
+        </div>
 
-    </v-client-table>
+        <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}} </div>
+      </v-client-table>
+    </div>
   </div>
 </template>
 
@@ -53,7 +56,7 @@ export default {
   data: function(){
       return {
         searchInputTitle:'',
-        columns: ['no', 'title', 'author','publisher','publishedDate','status'],
+        columns: ['no', 'title', 'author','publisher', 'dateForMobile', 'publishedDate','status'],
         tableData: [],
         options: {
           headings: {
@@ -140,19 +143,23 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-/*h1, h2 {*/
-  /*font-weight: normal;*/
-/*}*/
-/*ul {*/
-  /*list-style-type: none;*/
-  /*padding: 0;*/
-/*}*/
-/*li {*/
-  /*display: inline-block;*/
-  /*margin: 0 10px;*/
-/*}*/
-/*a {*/
-  /*color: #42b983;*/
-/*}*/
+<style>
+  .act-table-responsive thead th:nth-child(5){
+    display: none;
+  }
+  .act-table-responsive td:nth-child(5){
+    display: none;
+  }
+  @media only screen and (max-width: 800px) {
+
+    .act-table-responsive td:nth-child(6){
+      display: none;
+    }
+    .act-table-responsive thead th:nth-child(5){
+      display: block;
+    }
+    .act-table-responsive td:nth-child(5){
+      display: block;
+    }
+  }
 </style>
