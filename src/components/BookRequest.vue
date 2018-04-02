@@ -80,7 +80,7 @@ export default {
 
 //        console.log('data.data',data.data)
 
-        fb.readAllBooks((registedBooks) => {
+        fb.readAllBooksForCheckIFWeHave((registedBooks) => {
 //          console.log('data.data', registedBooks)
           //this.convertToFinalResult(res[0].items, registedBooks);
           this.convertToFinalResult(data.data, registedBooks);
