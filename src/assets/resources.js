@@ -1,17 +1,44 @@
 export default {
   TEST_CASE :{
     BOOK_SEARCH_TABLE_RESULT: [
-        { no: 1, isbn: "8970508880 9788970508887", title: "명품 HTML5 + CSS3 + Javascript 웹 프로그래밍", author: "황기태", publisher:"생능출판사", publishing_date:"20170116", status:"" },
-        { no: 2, isbn: "8996094072 9788996094074",title: "윤성우의 열혈 <b>Java</b> 프로그래밍", author: "윤성우", publisher:"오렌지미디어", publishing_date:"20170705", status:"" },
-        { no: 3, isbn: "8994492038 9788994492032",title: "<b>Java</b>의 정석 (최신 <b>Java</b> 8.0 포함)", author: "남궁성", publisher:"도우출판", publishing_date:"20160127", status:"" },
-        { no: 4, isbn: "8968483558 9788968483554",title: "모던 웹을 위한 JavaScript + jQuery 입문 (ECMAScript 5/6, jQuery 3.X 대응)", author: "윤인성", publisher:"한빛미디어", publishing_date:"20170501", status:"" },
-      { no: 5, isbn: "1185578218 9791185578217",title: "어서와 <b>Java</b>는 처음이지! (JDK8로 배우는 자바 프로그래밍)", author: "천인국", publisher:"인피니티북스", publishing_date:"20151125", status:"" },
-      { no: 6, isbn: "8968481474 9788968481475",title: "이것이 자바다 (신용권의 <b>Java</b> 프로그래밍 정복)", author: "신용권", publisher:"한빛미디어", publishing_date:"20150105", status:"" },
-        { no: 7, isbn: "8992649207 9788992649209",title: "HTML5 + CSS3 + JavaScript로 배우는 웹프로그래밍 기초 (기초부터 모바일웹까지 빠르고 쉽게 배우는 웹개발 지침서)", author: "천인국", publisher:"인피니티북스", publishing_date:"20131219", status:"" },
-        { no: 8, isbn: "8970509267 9788970509266",title: "명품 <b>JAVA</b> Programming", author: "황기태|김효수", publisher:"생능출판사", publishing_date:"20170816", status:"" },
-        { no: 9, isbn: "8931456735 9788931456738",title: "그림으로 배우는 <b>Java</b> Programming (<b>Java</b> 8 개발 환경에 대응하는 최신 개정판)", author: "Mana Takahashi", publisher:"영진닷컴", publishing_date:"20171010", status:"" },
-        { no: 10, isbn: "8997399039 9788997399031",title: "이렇게 하면 나도 프로그램을 잘 만들수 있다 (C & <b>JAVA</b> 프로그래밍 입문)", author: "김석현", publisher:"삼양애드", publishing_date:"20120220", status:"" }
+      { no: 1, isbn: "8970508880 9788970508887", title: "명품 HTML5 + CSS3 + Javascript 웹 프로그래밍", author: "황기태", publisher:"생능출판사", publishedDate:"20170116", status:"신청중",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=11575805", image:"http://bookthumb.phinf.naver.net/cover/115/758/11575805.jpg?type=m1&udate=20180110" },
+      { no: 2, isbn: "8996094072 9788996094074",title: "윤성우의 열혈 <b>Java</b> 프로그래밍", author: "윤성우", publisher:"오렌지미디어", publishedDate:"20170705", status:"보유",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=12236206", image:"http://bookthumb.phinf.naver.net/cover/122/362/12236206.jpg?type=m1&udate=20171016" },
+      { no: 3, isbn: "8994492038 9788994492032",title: "<b>Java</b>의 정석 (최신 <b>Java</b> 8.0 포함)", author: "남궁성", publisher:"도우출판", publishedDate:"20160127", status:"보유",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=10191151", image:"http://bookthumb.phinf.naver.net/cover/101/911/10191151.jpg?type=m1&udate=20171007" },
+      { no: 4, isbn: "8968483558 9788968483554",title: "모던 웹을 위한 JavaScript + jQuery 입문 (ECMAScript 5/6, jQuery 3.X 대응)", author: "윤인성", publisher:"한빛미디어", publishedDate:"20170501", status:"",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=11990519", image:"http://bookthumb.phinf.naver.net/cover/119/905/11990519.jpg?type=m1&udate=20171003" },
+      { no: 5, isbn: "1185578218 9791185578217",title: "어서와 <b>Java</b>는 처음이지! (JDK8로 배우는 자바 프로그래밍)", author: "천인국", publisher:"인피니티북스", publishedDate:"20151125", status:"",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=9818779", image:"http://bookthumb.phinf.naver.net/cover/098/187/09818779.jpg?type=m1&udate=20160707" }
       ],
+    BOOK_HAVE_LIST : [
+      { isbn: "8970508880 9788970508887", title: "명품 HTML5 + CSS3 + Javascript 웹 프로그래밍", author: "황기태", publisher:"생능출판사", publishedDate:"20170116", status:"신청중",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=11575805", image:"http://bookthumb.phinf.naver.net/cover/115/758/11575805.jpg?type=m1&udate=20180110",
+        createdDate: "2018-03-28T16:11:36.543Z", updatedDate:"2018-03-28T16:11:42.703Z"},
+      { no: 2, isbn: "8996094072 9788996094074",title: "윤성우의 열혈 <b>Java</b> 프로그래밍", author: "윤성우", publisher:"오렌지미디어", publishedDate:"20170705", status:"보유",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=12236206", image:"http://bookthumb.phinf.naver.net/cover/122/362/12236206.jpg?type=m1&udate=20171016",
+        createdDate: "2018-03-28T16:11:36.543Z", updatedDate:"2018-03-28T16:11:42.703Z"},
+      { no: 3, isbn: "8994492038 9788994492032",title: "<b>Java</b>의 정석 (최신 <b>Java</b> 8.0 포함)", author: "남궁성", publisher:"도우출판", publishedDate:"20160127", status:"보유",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=10191151", image:"http://bookthumb.phinf.naver.net/cover/101/911/10191151.jpg?type=m1&udate=20171007",
+        createdDate: "2018-03-28T16:11:36.543Z", updatedDate:"2018-03-28T16:11:42.703Z"}
+      ],
+    BOOK_REQUESTED_TABLE_RESULT: [
+      { no: 1, isbn: "8970508880 9788970508887", title: "명품 HTML5 + CSS3 + Javascript 웹 프로그래밍", author: "황기태", publisher:"생능출판사", publishedDate:"20170116", status:"신청중",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=11575805", image:"http://bookthumb.phinf.naver.net/cover/115/758/11575805.jpg?type=m1&udate=20180110" },
+      { no: 2, isbn: "8996094072 9788996094074",title: "윤성우의 열혈 <b>Java</b> 프로그래밍", author: "윤성우", publisher:"오렌지미디어", publishedDate:"20170705", status:"보유",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=12236206", image:"http://bookthumb.phinf.naver.net/cover/122/362/12236206.jpg?type=m1&udate=20171016" },
+      { no: 3, isbn: "8994492038 9788994492032",title: "<b>Java</b>의 정석 (최신 <b>Java</b> 8.0 포함)", author: "남궁성", publisher:"도우출판", publishedDate:"20160127", status:"보유",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=10191151", image:"http://bookthumb.phinf.naver.net/cover/101/911/10191151.jpg?type=m1&udate=20171007" },
+      { no: 4, isbn: "8968483558 9788968483554",title: "모던 웹을 위한 JavaScript + jQuery 입문 (ECMAScript 5/6, jQuery 3.X 대응)", author: "윤인성", publisher:"한빛미디어", publishedDate:"20170501",
+        status:"신청중", link:"http://book.naver.com/bookdb/book_detail.php?bid=11990519", image:"http://bookthumb.phinf.naver.net/cover/119/905/11990519.jpg?type=m1&udate=20171003" },
+      { no: 5, isbn: "1185578218 9791185578217",title: "어서와 <b>Java</b>는 처음이지! (JDK8로 배우는 자바 프로그래밍)", author: "천인국", publisher:"인피니티북스", publishedDate:"20151125", status:"",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=9818779", image:"http://bookthumb.phinf.naver.net/cover/098/187/09818779.jpg?type=m1&udate=20160707" }
+    ],
+    BOOK_REQUESTED_TABLE_ROW:
+      { no: 2, isbn: "8996094072 9788996094074",title: "윤성우의 열혈 Java 프로그래밍", author: "윤성우", publisher:"오렌지미디어", publishedDate:"2017-07-05", status:"보유",
+        link:"http://book.naver.com/bookdb/book_detail.php?bid=12236206", image:"http://bookthumb.phinf.naver.net/cover/122/362/12236206.jpg?type=m1&udate=20171016" }
+    ,
     BOOK_SEARCH_RESULT : {
       data: {
       "lastBuildDate": "Fri, 23 Mar 2018 13:54:26 +0900",
@@ -78,66 +105,6 @@ export default {
           "pubdate": "20151125",
           "isbn": "1185578218 9791185578217",
           "description": "이 책 [어서와 <b>JAVA</b>는 처음이지!]는 그림으로 중요한 개념을 확실하게 설명한 다음, LAB을 통해 충분히 활용할 수 있게 한 책으로, 중요한 핵심 개념들에 대해서는 꼼꼼한 설명을 들려주고 자바의 다양한 문법들을 예제나 LAB과 함께 다루고 있다. 책은 자바의 가장 최신버전인 JDK8을 포함시키고, 각각의... "
-        },
-        {
-          "title": "이것이 자바다 (신용권의 <b>Java</b> 프로그래밍 정복)",
-          "link": "http://book.naver.com/bookdb/book_detail.php?bid=8589375",
-          "image": "http://bookthumb.phinf.naver.net/cover/085/893/08589375.jpg?type=m1&udate=20170925",
-          "author": "신용권",
-          "price": "30000",
-          "discount": "27000",
-          "publisher": "한빛미디어",
-          "pubdate": "20150105",
-          "isbn": "8968481474 9788968481475",
-          "description": "『이것이 자바다』은 15년 이상 자바 언어를 교육해온 자바 전문강사의 노하우를 아낌 없이 담아낸 자바 입문서이다. 자바 입문자를 배려한 친절한 설명과 배려로 1장에 풀인원 설치 방법을 제공하여 쉽게 학습환경을 구축할 수 있다. 또한 중급 개발자로 나아가기 위한 람다식(14장), JAVAFX(17장), NIO(18... "
-        },
-        {
-          "title": "HTML5 + CSS3 + JavaScript로 배우는 웹프로그래밍 기초 (기초부터 모바일웹까지 빠르고 쉽게 배우는 웹개발 지침서)",
-          "link": "http://book.naver.com/bookdb/book_detail.php?bid=7394492",
-          "image": "http://bookthumb.phinf.naver.net/cover/073/944/07394492.jpg?type=m1&udate=20170906",
-          "author": "천인국",
-          "price": "28000",
-          "discount": "26600",
-          "publisher": "인피니티북스",
-          "pubdate": "20131219",
-          "isbn": "8992649207 9788992649209",
-          "description": "『HTML5 + CSS3 + JAVASCRIPT로 배우는 웹프로그래밍 기초』는 웹프로그래밍을 공부한다면 반드시 짚고 넘어가야 할 내용을 친절하게 설명한다. 가장 기초가 되는 HTML5와 CSS3, JAVASCRIPT에 이어 JQUERY, AJAX, JSON의 내용을 살펴볼 수 있다. 최근 HTML5에는 위치 정보, 드래그 앤 드롭, 웹... "
-        },
-        {
-          "title": "명품 <b>JAVA</b> Programming",
-          "link": "http://book.naver.com/bookdb/book_detail.php?bid=12344942",
-          "image": "http://bookthumb.phinf.naver.net/cover/123/449/12344942.jpg?type=m1&udate=20170811",
-          "author": "황기태|김효수",
-          "price": "32000",
-          "discount": "31040",
-          "publisher": "생능출판사",
-          "pubdate": "20170816",
-          "isbn": "8970509267 9788970509266",
-          "description": "자바(<b>Java</b>)는 그 이전 시대에 있었던 프로그래밍 언어에서 한 차원 진화된 개념으로 개발된 가히 혁명적 언어이며 플랫폼이다. 한 번 작성된 자바 프로그램은 어느 컴퓨터, 어떤 운영체제에서도 실행될 수 있다. Write Once Run Anywhere의 세상이 만들어지는 것이다. 데스크톱, 웹 서버 및 웹 클라이언트, 셋톱... "
-        },
-        {
-          "title": "그림으로 배우는 <b>Java</b> Programming (<b>Java</b> 8 개발 환경에 대응하는 최신 개정판)",
-          "link": "http://book.naver.com/bookdb/book_detail.php?bid=12557412",
-          "image": "http://bookthumb.phinf.naver.net/cover/125/574/12557412.jpg?type=m1&udate=20171014",
-          "author": "Mana Takahashi",
-          "price": "18000",
-          "discount": "16200",
-          "publisher": "영진닷컴",
-          "pubdate": "20171010",
-          "isbn": "8931456735 9788931456738",
-          "description": "『그림으로 배우는 <b>JAVA</b> PROGRAMMING』은 프로그래밍 경험이 없더라도 <b>JAVA</b>를 기초부터 심화 내용까지 <b>JAVA</b>의 모든 것을 그림으로 쉽게 설명해주는 <b>JAVA</b> 입문서이다. 기존 출간되었던 ‘그림으로 배우는 <b>JAVA</b> PROGRAMMING'의 개정판으로 최신 <b>JAVA</b> 8 개발환경에 대응하며, <b>JAVA</b>를 사용하기 위한... "
-        },
-        {
-          "title": "이렇게 하면 나도 프로그램을 잘 만들수 있다 (C & <b>JAVA</b> 프로그래밍 입문)",
-          "link": "http://book.naver.com/bookdb/book_detail.php?bid=6836404",
-          "image": "http://bookthumb.phinf.naver.net/cover/068/364/06836404.jpg?type=m1&udate=20170915",
-          "author": "김석현",
-          "price": "23000",
-          "discount": "20700",
-          "publisher": "삼양애드",
-          "pubdate": "20120220",
-          "isbn": "8997399039 9788997399031",
-          "description": "사람들은 누구나 세상에 하나뿐인 나만의 것을 만들고자 한다. 나만의 것을 만들고자 할 때 손쉽게 할 수 있다고 생각하는 것이 프로그램을 만드는 것이다. 그래서 누구나 프로그램을 만들어 보고 싶어 한다. 그렇지만 어떻게 해야 하는지 막막해 한다. 이 책들은 그러한 분들을 위해 누구나 세상을 바꿀 수 있는... "
         }
       ]
     }

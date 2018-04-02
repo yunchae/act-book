@@ -7,7 +7,7 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search" id="txtSearch" v-model="keyword" @keyup.enter="readBooksByFilter"/>
           <div class="input-group-btn">
-            <button class="btn btn-primary" type="submit" @click="readBooksByFilter">
+            <button id="btnGetList" class="btn btn-primary" type="submit" @click="readBooksByFilter">
               <span class="glyphicon glyphicon-search"></span>
             </button>
           </div>
@@ -57,7 +57,7 @@
             createdDate: "신청일",
             status: "상태"
           },
-          sortable: ['title', 'publishedDate', 'status'],
+//          sortable: ['title', 'publishedDate', 'status'],
           filterable: false, // 필터 사용 여부 또는 필터 적용할 컬럼 설정
           perPage: 10, // 한페이지에 보여줄 리스트 개수 (초기값)
           perPageValues: [10, 20, 30, 40, 50], // 한페이지에 보여줄 리스트 개수를 설정하는 값 리스트
@@ -74,7 +74,7 @@
         this.tableData[rowNo-1].status = selectedStatus;
       },
       readBooksByFilter: function(){
-        console.log('keyword: ',this.keyword);
+//        console.log('keyword: ',this.keyword);
         fb.readAllRequestedBooks(this.keyword, this.setTableData);
       },
       setTableData: function(value){

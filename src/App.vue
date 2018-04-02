@@ -6,7 +6,7 @@
           <!-- Brand and toggsle get grouped for better mobile display -->
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="ssr-only">Toggle navigation</span>
+              <span class="ssr-only"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -64,8 +64,7 @@ export default {
         }
     }
   },
-  mounted: function(){
-
+  created: function(){
     if(this.$route.path === '/booklist' || this.$route.path === '/'){
       this.isList = true;
     }else if(this.$route.path === '/bookrequest'){

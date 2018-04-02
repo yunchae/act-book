@@ -1,9 +1,8 @@
 const config = {
   FIREBASE_CONFIG : {
-    apiKey: "AIzaSyC29ghXUYGOw5dTVMvWIgHlqA7VzwGA7qU",
-    authDomain: "act-book.firebaseapp.com",
-    databaseURL: "https://act-book.firebaseio.com"
-    //storageBucket: "bucket.appspot.com"
+    apiKey: 'AIzaSyAakMhMIe4Jd5nJgleV53NazRPBMV8Fs7o',
+    authDomain: 'actbook-firestore.firebaseapp.com',
+    projectId: 'actbook-firestore'
   }
 };
 

@@ -64,7 +64,7 @@ export default {
           publishedDate: "출판일",
           status: "상태"
         },
-        sortable: ['title', 'publishedDate', 'status'],
+//        sortable: ['title', 'publishedDate', 'status'],
         filterable: false, // 필터 사용 여부 또는 필터 적용할 컬럼 설정
         perPage: 10, // 한페이지에 보여줄 리스트 개수 (초기값)
         perPageValues: [10, 20, 30, 40, 50], // 한페이지에 보여줄 리스트 개수를 설정하는 값 리스트
@@ -84,6 +84,7 @@ export default {
     },
     readBooksByFilter: function(){
       const fb = new FirebaseDao();
+//      console.log('keyword: ',this.keyword);
       fb.readBooks(this.searchOpt, this.keyword, this.setTableData);
     },
     setTableData: function(value){

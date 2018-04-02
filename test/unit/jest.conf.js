@@ -9,7 +9,7 @@ module.exports = {
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
-    "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.js"
   },
   transform: {
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
@@ -22,7 +22,7 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{js,vue}',
     '!src/main.js',
-    '!src/router/index.test.js',
+    '!src/router/index.js',
     '!**/node_modules/**'
   ]
 }

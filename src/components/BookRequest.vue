@@ -80,8 +80,11 @@ export default {
     searchBookList: function(){
       this.api.searchBook(encodeURI(this.searchInputTitle)).then((data)=>{
         //var res = $.parseJSON('[' + data.data + ']');
-        fb.readAllBooks((registedBooks) => {
-//          console.log('data.data',data.data)
+
+//        console.log('data.data',data.data)
+
+        fb.readAllBooksForCheckIFWeHave((registedBooks) => {
+//          console.log('data.data', registedBooks)
           //this.convertToFinalResult(res[0].items, registedBooks);
           this.convertToFinalResult(data.data, registedBooks);
         })
@@ -122,7 +125,7 @@ export default {
     },
     requestBook: function (bookInfo) {
 
-      let bookTitle = bookInfo.title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")
+      let bookTitle = this.removeBTag(bookInfo);
 
       this.$swal({
         title: "<i>신청완료!</i>",
@@ -134,6 +137,10 @@ export default {
       fb.insertBook(book);
 
       this.tableData[bookInfo.no - 1].status = '신청중'
+    },
+    removeBTag: function (bookInfo) {
+      let bookTitle = bookInfo.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
+      return bookTitle;
     },
     changeDateFormat: function(date){
       return date.substring(0,4) + '-' + date.substring(4,6) + '-' + date.substring(6,8)
