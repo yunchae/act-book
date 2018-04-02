@@ -12,29 +12,29 @@
             </div>
           </div>
         </div>
-</div>
+    </div>
 
 
-
-    <v-client-table :data="tableData" :columns="columns" :options="options">
-      <div slot="title" slot-scope="props" style="text-align:left;">
-        <popper :options="{placement: 'right'}">
-        <div class="popper">
-          <img style="width:100px; height:100px;" v-bind:src="props.row.image">
+    <div class="book-request-table act-table-responsive">
+      <v-client-table :data="tableData" :columns="columns" :options="options">
+        <div slot="title" slot-scope="props" style="text-align:left;">
+          <popper :options="{placement: 'right'}">
+          <div class="popper">
+            <img style="width:100px; height:100px;" v-bind:src="props.row.image">
+          </div>
+          <a slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
+          </a>
+        </popper>
         </div>
-        <a slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
-        </a>
-      </popper>
-      </div>
-      <div slot="author" slot-scope="props" v-html="props.row.author"></div>
+        <div slot="author" slot-scope="props" v-html="props.row.author"></div>
 
-      <div slot="status" slot-scope="props">
-        <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
-        <p  v-else-if="props.row.status !=''" > {{props.row.status}}</p>
-      </div>
+        <div slot="status" slot-scope="props">
+          <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
+          <p  v-else-if="props.row.status !=''" > {{props.row.status}}</p>
+        </div>
 
-        <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}} </div>
-      </v-client-table>
+          <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}} </div>
+        </v-client-table>
     </div>
   </div>
 </template>
@@ -64,7 +64,7 @@ export default {
             title: "제목",
             author: "저자",
             publisher: "출판사",
-            publishedDate: "출판년도",
+            publishedDate: "출판일",
             status: "상태"
           },
           filterable: false, // 필터 사용 여부 또는 필터 적용할 컬럼 설정
