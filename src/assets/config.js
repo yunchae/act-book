@@ -1,8 +1,8 @@
 const config = {
   FIREBASE_CONFIG : {
-    apiKey: 'AIzaSyAakMhMIe4Jd5nJgleV53NazRPBMV8Fs7o',
-    authDomain: 'actbook-firestore.firebaseapp.com',
-    projectId: 'actbook-firestore'
+    apiKey: 'AIzaSyC29ghXUYGOw5dTVMvWIgHlqA7VzwGA7qU',
+    authDomain: 'act-book.firebaseapp.com',
+    projectId: 'act-book'
   }
 };
 
