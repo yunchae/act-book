@@ -11,7 +11,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand">Act-Book</a>
+            <a class="navbar-brand">ACT-BOOK</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
