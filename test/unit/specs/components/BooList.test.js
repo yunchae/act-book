@@ -57,7 +57,7 @@ describe('BooList test', () => {
   })
 
   it('BookList 화면이 뜨면 readBooksByFilter의  firebasedao.readbooks가 호출된다.', () => {
-    const FirebaseDaoStub = sandbox.stub(FirebaseDao.prototype, 'readBooks');
+    const FirebaseDaoStub = sandbox.spy(FirebaseDao.prototype, 'readBooks');
 
     const vm = mount(BookList);
 

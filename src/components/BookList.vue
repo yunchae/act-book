@@ -75,7 +75,6 @@ export default {
     },
     readBooksByFilter: function(){
       const fb = new FirebaseDao();
-      console.log('keyword: ',this.keyword);
       fb.readBooks(this.searchOpt, this.keyword, this.setTableData);
     },
     setTableData: function(value){
