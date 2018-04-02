@@ -18,6 +18,7 @@
     "bootstrap-vue": "^2.0.0-rc.2",
     "firebase": "^4.11.0",
     "flush-promises": "^1.0.0",
+    "jquery": "^3.3.1",
     "sinon": "^4.4.8",
     "vue": "^2.5.2",
     "vue-popperjs": "^1.2.6",

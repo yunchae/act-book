@@ -4,15 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Api from './api'
+import 'jquery/src/jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/js/bootstrap'
 import {ClientTable, Event} from 'vue-tables-2'
 import NewBook from './utils/Book'
 import VueSweetAlert2  from 'vue-sweetalert2'
 
 Vue.use(VueSweetAlert2)
 Vue.use(ClientTable)
-Vue.use(BootstrapVue)
 
 Vue.prototype.api = Api
 Vue.prototype.createBook = NewBook;
