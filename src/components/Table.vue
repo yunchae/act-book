@@ -23,11 +23,11 @@ export default {
 
     let data = resource.BOOKS;
 
-    // $.map(data.books, (bookInfo) => {
-    //
-    //     var book = this.createBook(bookInfo.isbn, bookInfo.title,bookInfo.author, bookInfo.publishedDate, bookInfo.publisher, bookInfo.status, bookInfo.link, bookInfo.image, '');
-    //     fb.insertBook(book);
-    //   });
+    $.map(data.books, (bookInfo) => {
+
+        var book = this.createBook(bookInfo.isbn, bookInfo.title,bookInfo.author, bookInfo.publishedDate, bookInfo.publisher, bookInfo.status, bookInfo.link, bookInfo.image, '');
+        fb.insertBook(book);
+      });
 
     // console.log('data', data)
     // console.log('arr', arr)

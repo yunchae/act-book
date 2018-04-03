@@ -45,6 +45,7 @@
             <option>보유</option>
             <option>취소</option>
           </select>
+          <span v-if="props.row.applier != ''">({{props.row.applier}})</span>
         </div>
       </v-client-table>
     </div>
@@ -114,7 +115,16 @@
     display: none;
   }
   @media only screen and (max-width: 800px) {
+    .book-request-list-table td:nth-child(1){
+      display: none;
+    }
+    .book-request-list-table td:nth-child(4){
+      display: none;
+    }
     .book-request-list-table td:nth-child(7){
+      display: none;
+    }
+    .book-request-list-table td:nth-child(8){
       display: none;
     }
     .book-request-list-table td:nth-child(6){
