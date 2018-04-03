@@ -46,4 +46,11 @@
   */
   .act-table-responsive td:before { content: attr(data-title); }
 
+  .ellipsis {
+    width: 100%;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 }

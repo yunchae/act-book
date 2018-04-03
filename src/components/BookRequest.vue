@@ -22,7 +22,7 @@
           <div class="popper">
             <img style="width:100px; height:100px;" v-bind:src="props.row.image">
           </div>
-          <a slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
+          <a class="ellipsis" slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
           </a>
         </popper>
         </div>
