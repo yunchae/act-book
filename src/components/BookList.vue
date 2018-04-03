@@ -38,7 +38,7 @@
           </a>
         </div>
 
-        <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}} </div>
+        <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}}, {{props.row.status}} </div>
 
       </v-client-table>
     </div>
@@ -103,8 +103,16 @@ export default {
     display: none;
   }
   @media only screen and (max-width: 800px) {
-
+    .book-list-table td:nth-child(1){
+      display: none;
+    }
+    .book-list-table td:nth-child(4){
+      display: none;
+    }
     .book-list-table td:nth-child(6){
+      display: none;
+    }
+    .book-list-table td:nth-child(7){
       display: none;
     }
     .book-list-table thead th:nth-child(5){
