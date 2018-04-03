@@ -20,7 +20,7 @@
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" id="txtSearch" v-model="keyword" @keyup.enter="readBooksByFilter"/>
             <div class="input-group-btn">
-              <button class="btn btn-primary" type="submit" @click="readBooksByFilter">
+              <button class="btn act-button" type="submit" @click="readBooksByFilter">
                 <span class="glyphicon glyphicon-search"></span>
               </button>
             </div>

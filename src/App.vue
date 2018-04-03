@@ -14,23 +14,25 @@
             </button>
             <a class="navbar-brand" :style="style.navBrand">
               <img :style="style.actlogo" src="../static/act-transparent-30.png"/>
-              ACT-BOOK
+              <b>ACT-BOOK</b>
             </a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li id="btnBookList" v-bind:class="{active:isList}" @click="selectNav">
-                <router-link to="/booklist">목록조회 </router-link>
-              </li>
-              <li id="btnBookRequest" v-bind:class="{active:isRequest}" @click="selectNav">
-                <router-link to="/bookrequest">도서신청</router-link>
-              </li>
-              <li id="btnRequestList" v-bind:class="{active:isRequestList}" @click="selectNav">
-                <router-link to="/bookrequestlist">신청내역</router-link>
-              </li>
-            </ul>
+            <b :style="style.navFont">
+              <ul class="nav navbar-nav">
+                <li id="btnBookList" v-bind:class="{active:isList}" @click="selectNav">
+                  <router-link to="/booklist">목록조회</router-link>
+                </li>
+                <li id="btnBookRequest" v-bind:class="{active:isRequest}" @click="selectNav">
+                  <router-link to="/bookrequest">도서신청</router-link>
+                </li>
+                <li id="btnRequestList" v-bind:class="{active:isRequestList}" @click="selectNav">
+                  <router-link to="/bookrequestlist">신청내역</router-link>
+                </li>
+              </ul>
+            </b>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
@@ -58,6 +60,9 @@ export default {
         navBrand : {
           color: '#ab5656',
           verticalAlign: 'center'
+        },
+        navFont : {
+          fontSize: '15px'
         }
       }
     }
@@ -84,6 +89,8 @@ export default {
       this.isList = true;
     }else if(this.$route.path === '/bookrequest'){
       this.isRequest = true;
+    }else if(this.$route.path === '/bookrequestlist'){
+      this.isRequestList = true;
     }
   }
 }

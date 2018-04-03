@@ -11,6 +11,7 @@ import {ClientTable, Event} from 'vue-tables-2'
 import NewBook from './utils/Book'
 import VueSweetAlert2  from 'vue-sweetalert2'
 import './assets/css/act.table.css'
+import './assets/css/act.custom.css'
 //import 'expose-loader?$!expose-loader?jQuery!jquery'
 
 Vue.use(VueSweetAlert2)

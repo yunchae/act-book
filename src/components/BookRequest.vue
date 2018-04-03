@@ -6,7 +6,7 @@
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" id="txtSearch" v-model="searchInputTitle" @keyup.enter="searchBookList"/>
             <div class="input-group-btn">
-              <button id="searchButton" class="btn btn-primary" type="submit" @click="searchBookList">
+              <button id="searchButton" class="btn act-button" type="submit" @click="searchBookList">
                 <span class="glyphicon glyphicon-search"></span>
               </button>
             </div>

@@ -1,0 +1,20 @@
+.act-button {
+  background-color:#ab5656;
+  border-color: #ab5656;
+  color: white;
+}
+.act-button:hover {
+  background-color:#ab5656;
+  border-color: #ab5656;
+  color: white;
+}
+.act-button:focus {
+  background-color:#ab5656;
+  border-color: #ab5656;
+  color: white;
+}
+.act-button:active {
+  background-color:#ab5656;
+  border-color: #ab5656;
+  color: white;
+}
