@@ -53,4 +53,7 @@
     white-space: nowrap;
     overflow: hidden;
   }
+  .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #eee;
+  }
 }

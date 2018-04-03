@@ -35,7 +35,7 @@
           <a class="ellipsis" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
           </a>
         </div>
-
+        <div class="ellipsis" slot="author" slot-scope="props">{{props.row.author}}</div>
         <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}} </div>
 
       </v-client-table>

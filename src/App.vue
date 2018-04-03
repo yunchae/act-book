@@ -5,13 +5,17 @@
         <div class="container-fluid">
           <!-- Brand and toggsle get grouped for better mobile display -->
           <div class="navbar-header">
+
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               <span class="ssr-only"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand">ACT-BOOK</a>
+            <a class="navbar-brand" :style="style.navBrand">
+              <img :style="style.actlogo" src="../static/act-transparent-30.png"/>
+              ACT-BOOK
+            </a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,7 +48,18 @@ export default {
     return {
       isList : false,
       isRequest: false,
-      isRequestList: false
+      isRequestList: false,
+      style : {
+        actlogo : {
+          display: 'inline-block',
+          width: '15%',
+          verticalAlign: 'sub'
+        },
+        navBrand : {
+          color: '#ab5656',
+          verticalAlign: 'center'
+        }
+      }
     }
   },
   methods: {

@@ -26,7 +26,7 @@
           </a>
         </popper>
         </div>
-        <div slot="author" slot-scope="props" v-html="props.row.author"></div>
+        <div class="ellipsis" slot="author" slot-scope="props" v-html="props.row.author"></div>
 
         <div slot="status" slot-scope="props">
           <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
