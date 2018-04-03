@@ -30,10 +30,14 @@
 
         <div slot="status" slot-scope="props">
           <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
-          <p  v-else-if="props.row.status !=''" > {{props.row.status}}</p>
+          <span  v-else-if="props.row.status !=''" > {{props.row.status}}</span>
         </div>
 
-          <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}} </div>
+          <div slot="dateForMobile" slot-scope="props">
+            출판일 : {{props.row.publishedDate}}, <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
+            <span  v-else-if="props.row.status !=''" > {{props.row.status}}</span>
+
+          </div>
         </v-client-table>
     </div>
   </div>
@@ -169,8 +173,16 @@ export default {
     display: none;
   }
   @media only screen and (max-width: 800px) {
-
+    .book-request-table td:nth-child(1){
+      display: none;
+    }
+    .book-request-table td:nth-child(4){
+      display: none;
+    }
     .book-request-table td:nth-child(6){
+      display: none;
+    }
+    .book-request-table td:nth-child(7){
       display: none;
     }
     .book-request-table thead th:nth-child(5){
