@@ -61,8 +61,8 @@
 </template>
 
 <script>
-  import FirebaseDao from '../utils/FirebaseDao'
-  const fb = new FirebaseDao();
+  // import FirebaseDao from '../utils/FirebaseDao'
+  // const fb = new FirebaseDao();
   export default {
     name: 'BookRequestList',
     data: function () {
@@ -95,12 +95,12 @@
     methods: {
       statusChanged: function(rowNo, isbn, e){
         let selectedStatus = e.target.value;
-        fb.updateBook(isbn, selectedStatus);
+        this.fireStore.updateBook(isbn, selectedStatus);
         this.tableData[rowNo-1].status = selectedStatus;
       },
       readBooksByFilter: function(){
 //        console.log('keyword: ',this.keyword);
-        fb.readAllRequestedBooks(this.searchOpt, this.keyword, this.setTableData);
+        this.fireStore.readAllRequestedBooks(this.searchOpt, this.keyword, this.setTableData);
       },
       getBooksByStatus: function(e){
         this.searchOpt = e.target.value;

@@ -34,7 +34,7 @@
         </div>
 
           <div slot="dateForMobile" slot-scope="props">
-            출판일 : {{props.row.publishedDate}}, <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
+            출판일 : {{props.row.publishedDate}} &nbsp; <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
             <span  v-else-if="props.row.status !=''" > {{props.row.status}}</span>
 
           </div>
@@ -45,13 +45,13 @@
 
 <script>
 
-  import axios from 'axios'
-  import FirebaseDao from '../utils/FirebaseDao'
+  // import axios from 'axios'
+  // import FirebaseDao from '../utils/FirebaseDao'
   import Book from "../utils/Book";
   import VuePopper from 'vue-popperjs'
   import 'vue-popperjs/dist/css/vue-popper.css';
 
-  const fb = new FirebaseDao();
+  // const fb = new FirebaseDao();
 export default {
   name: 'BookRequest',
   components: {
@@ -83,7 +83,7 @@ export default {
   methods: {
     searchBookList: function(){
       this.api.searchBook(encodeURI(this.searchInputTitle)).then((data)=>{
-        fb.readAllBooksForCheckIFWeHave((registedBooks) => {
+        this.fireStore.readAllBooksForCheckIFWeHave((registedBooks) => {
           this.convertToFinalResult(data.data, registedBooks);
         })
       })
@@ -148,7 +148,7 @@ export default {
           }).then((result) => {
             // console.log('applier : ', applier);
             var book = new Book(bookInfo.isbn, bookTitle, this.removeBTag(bookInfo.author), this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image, applier);
-            fb.insertBook(book);
+            this.fireStore.insertBook(book);
             this.tableData[bookInfo.no - 1].status = '신청중'
           })
         }

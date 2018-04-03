@@ -43,7 +43,7 @@
 </template>
 
 <script>
-  import FirebaseDao from '../utils/FirebaseDao'
+  // import FirebaseDao from '../utils/FirebaseDao'
 export default {
   name: 'BookList',
   data: function () {
@@ -80,9 +80,9 @@ export default {
       this.readBooksByFilter();
     },
     readBooksByFilter: function(){
-      const fb = new FirebaseDao();
+      // const fb = new FirebaseDao();
 //      console.log('keyword: ',this.keyword);
-      fb.readBooks(this.searchOpt, this.keyword, this.setTableData);
+      this.fireStore.readBooks(this.searchOpt, this.keyword, this.setTableData);
     },
     setTableData: function(value){
       this.tableData = value;

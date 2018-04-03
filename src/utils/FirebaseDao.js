@@ -1,11 +1,9 @@
-// import firebase from 'firebase'
+import firebase from 'firebase'
 import config from '../assets/config'
-//
-// firebase.initializeApp(config.FIREBASE_CONFIG);
+import $ from 'jquery'
 
-
-const firebase = require("firebase");
-require("firebase/firestore");
+// const firebase = require("firebase");
+// require("firebase/firestore");
 firebase.initializeApp(config.FIREBASE_CONFIG);
 
 
@@ -15,102 +13,86 @@ firebase.initializeApp(config.FIREBASE_CONFIG);
 export default class FirebaseDao {
 
   constructor() {
-    this.firestore = firebase.firestore();
+    this.database = firebase.database();
   }
 
   readBooks(filterType, searchKeyword, callback) {
-    let booksQuery = this.firestore.collection('books')
+    let query = this.database.ref('books/').orderByChild('status');
 
-    if (filterType != '전체') {
-      booksQuery = booksQuery.where('status', '==', filterType).orderBy('title', 'asc')
-    } else {
-      booksQuery = booksQuery.orderBy('status', 'asc').orderBy('title', 'asc');
+    if(filterType !='전체'){
+      query = query.equalTo(filterType);
     }
 
-    booksQuery.get().then(snapshot => {
-      var retArr = [];
-      var idx = 1;
+    query.once('value').then((snapshot) =>{
+      var arr = [];
       //Firebase database에서 조회 시 결과가 object로 넘어와서 배열로 변경 함
       snapshot.forEach((childSnapshot) => {
-        var item = childSnapshot.data();
+        var item = childSnapshot.val();
 
-        if (item.status != '취소') {
+        if(item.status !='취소') {
           if (this.isSearchedWithoutKeyword(searchKeyword)
             || this.isSearchedWithKeywordAndMatched(searchKeyword, item)) {
-            item.no = idx++;
-            retArr.push(item);
+            item.no = arr.length + 1;
+            arr.push(item);
           }
         }
       })
       // console.log(retArr);
-      callback(retArr);
-    })
-      .catch(err => {
+      callback(arr);
+    }).catch(err => {
         console.log('Error getting documents', err);
-      });
-
+    });
   }
 
   readAllBooksForCheckIFWeHave(callback) {
-    let booksQuery = this.firestore.collection('books')
-
-    booksQuery.get().then(snapshot => {
+    this.database.ref('books/').once('value').then((snapshot) =>{
       var returnArr = [];
 
-      snapshot.forEach(function (childSnapshot) {
-        var item = childSnapshot.data();
+      snapshot.forEach((childSnapshot) =>{
+        var item = childSnapshot.val();
 
         returnArr.push(item);
       });
 
       return callback(returnArr);
-    })
-      .catch(err => {
+    }).catch(err => {
         console.log('Error getting documents', err);
       });
   }
 
   insertBook(book) {
-    this.firestore.collection('books').doc(book.isbn).set({
+    this.database.ref('books/' + book.isbn).set({
       isbn: book.isbn,
-      title: book.title,
-      author: book.author,
-      publishedDate: book.publishedDate,
-      publisher: book.publisher,
-      createdDate: book.createdDate,
-      updatedDate: book.updatedDate,
-      status: book.status,
-      link: book.link,
-      image: book.image,
+      title : book.title,
+      author : book.author,
+      publishedDate : book.publishedDate,
+      publisher : book.publisher,
+      createdDate : book.createdDate,
+      updatedDate : book.updatedDate,
+      status : book.status,
+      link : book.link,
+      image : book.image,
       applier : book.applier
     })
   }
 
   readAllRequestedBooks(filterType, searchKeyword, callback) {
-    let booksQuery = this.firestore.collection('books')
-
-    if (filterType != '전체') {
-      booksQuery = booksQuery.where('status', '==', filterType).orderBy('title', 'asc')
-    } else {
-      booksQuery = booksQuery.orderBy('createdDate', 'desc').orderBy('title', 'asc');
-    }
-
-    booksQuery.get().then(snapshot => {
-      var returnArr = [];
+    this.database.ref('books/').orderByChild('createdDate').once('value').then((snapshot)=>{
+      let arr = [];
+      let count = snapshot.numChildren();
 
       snapshot.forEach((childSnapshot) => {
+        var item = childSnapshot.val();
 
-        var item = childSnapshot.data();
         if (this.isSearchedWithoutKeyword(searchKeyword)
-          || this.isSearchedWithKeywordAndMatched(searchKeyword, item)) {
-          item.no = returnArr.length + 1;
-          returnArr.push(item);
+          || this.isSearchedWithKeywordAndMatched(searchKeyword, item)){
+          item.no = count--;
+          arr.unshift(item);
         }
       });
       // console.log(returnArr)
-      return callback(returnArr);
-    })
-      .catch(err => {
+      return callback(arr);
+    }).catch(err => {
         console.log('Error getting documents', err);
       });
   }
@@ -124,9 +106,10 @@ export default class FirebaseDao {
   }
 
   updateBook(isbn, status){
-    let booksQuery = this.firestore.collection('books').doc(isbn)
-    let updatedDate = new Date().toISOString()
-    booksQuery.update({status : status,updatedDate: updatedDate })
+    this.database.ref('books/' +isbn).update({
+      updatedDate : new Date().toISOString(),
+      status : status
+    })
   }
 
 }
