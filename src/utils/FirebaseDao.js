@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 import config from '../assets/config'
-import $ from 'jquery'
+// import $ from 'jquery'
 
 // const firebase = require("firebase");
 // require("firebase/firestore");
@@ -25,6 +25,7 @@ export default class FirebaseDao {
 
     query.once('value').then((snapshot) =>{
       var arr = [];
+
       //Firebase database에서 조회 시 결과가 object로 넘어와서 배열로 변경 함
       snapshot.forEach((childSnapshot) => {
         var item = childSnapshot.val();
@@ -32,7 +33,7 @@ export default class FirebaseDao {
         if(item.status !='취소') {
           if (this.isSearchedWithoutKeyword(searchKeyword)
             || this.isSearchedWithKeywordAndMatched(searchKeyword, item)) {
-            item.no = arr.length + 1;
+            // item.no = arr.length + 1;
             arr.push(item);
           }
         }
@@ -77,21 +78,36 @@ export default class FirebaseDao {
   }
 
   readAllRequestedBooks(filterType, searchKeyword, callback) {
-    this.database.ref('books/').orderByChild('createdDate').once('value').then((snapshot)=>{
+    let query = this.database.ref('books/').orderByChild('status');
+
+    if(filterType !='전체'){
+      query = query.equalTo(filterType);
+    }
+
+    query.once('value').then((snapshot)=>{
       let arr = [];
-      let count = snapshot.numChildren();
+      // let count = snapshot.numChildren();
 
       snapshot.forEach((childSnapshot) => {
         var item = childSnapshot.val();
 
         if (this.isSearchedWithoutKeyword(searchKeyword)
           || this.isSearchedWithKeywordAndMatched(searchKeyword, item)){
-          item.no = count--;
+          // item.no = count--;
           arr.unshift(item);
         }
       });
+
+
       // console.log(returnArr)
-      return callback(arr);
+      return callback(arr.sort(function(a, b) {
+        if(a.createdDate < b.createdDate) {
+          return 1;
+        }else if(a.createdDate > b.createdDate) {
+          return -1;
+        }
+        return 0;
+      }));
     }).catch(err => {
         console.log('Error getting documents', err);
       });

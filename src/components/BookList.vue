@@ -31,12 +31,15 @@
 
     <div class="book-list-table act-table-responsive">
       <v-client-table :data="tableData" :columns="columns" :options="options">
+        <div slot="no" slot-scope="props">
+          {{props.index}}
+        </div>
         <div slot="title" slot-scope="props" style="text-align:left;">
           <a class="ellipsis" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
           </a>
         </div>
         <div class="ellipsis" slot="author" slot-scope="props">{{props.row.author}}</div>
-        <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}}, {{props.row.status}} </div>
+        <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}} / {{props.row.status}} </div>
       </v-client-table>
     </div>
   </div>
@@ -111,9 +114,6 @@ export default {
     }
     .book-list-table td:nth-child(7){
       display: none;
-    }
-    .book-list-table thead th:nth-child(5){
-      display: block;
     }
     .book-list-table td:nth-child(5){
       display: block;

@@ -17,6 +17,9 @@
 
     <div class="book-request-table act-table-responsive">
       <v-client-table :data="tableData" :columns="columns" :options="options">
+        <div slot="no" slot-scope="props">
+          {{props.index}}
+        </div>
         <div slot="title" slot-scope="props" style="text-align:left;">
           <popper :options="{placement: 'right'}">
           <div class="popper">
@@ -29,17 +32,19 @@
         <div class="ellipsis" slot="author" slot-scope="props" v-html="props.row.author"></div>
 
         <div slot="status" slot-scope="props">
-          <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
+          <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row, props.index)" > 신청</Button>
           <span  v-else-if="props.row.status !=''" > {{props.row.status}}</span>
         </div>
 
           <div slot="dateForMobile" slot-scope="props">
-            출판일 : {{props.row.publishedDate}} &nbsp; <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
-            <span  v-else-if="props.row.status !=''" > {{props.row.status}}</span>
+            출판일 : {{props.row.publishedDate}}&nbsp;&nbsp;<Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row, props.index)" > 신청</Button>
+            <span  v-else-if="props.row.status !=''" >/ {{props.row.status}}</span>
 
           </div>
         </v-client-table>
+        <div class="table-no-result" v-if="tableData.length === 0">No matching records</div>
     </div>
+
   </div>
 </template>
 
@@ -100,7 +105,7 @@ export default {
         book.title = value.title
         book.author = value.author
         book.publisher = value.publisher
-        book.publishedDate = value.pubdate
+        book.publishedDate = this.changeDateFormat(value.pubdate)
         book.isbn = value.isbn
         book.status = ''
         book.link = value.link
@@ -121,7 +126,7 @@ export default {
         }
       }
     },
-    requestBook: function (bookInfo) {
+    requestBook: function (bookInfo, no) {
 
       let bookTitle = this.removeBTag(bookInfo.title) ;
 
@@ -149,7 +154,7 @@ export default {
             // console.log('applier : ', applier);
             var book = new Book(bookInfo.isbn, bookTitle, this.removeBTag(bookInfo.author), this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image, applier);
             this.fireStore.insertBook(book);
-            this.tableData[bookInfo.no - 1].status = '신청중'
+            this.tableData[no-1].status = '신청중'
           })
         }
       });
@@ -172,6 +177,9 @@ export default {
   .book-request-table td:nth-child(5){
     display: none;
   }
+  .table-no-result {
+    display: none;
+  }
   @media only screen and (max-width: 800px) {
     .book-request-table td:nth-child(1){
       display: none;
@@ -185,11 +193,13 @@ export default {
     .book-request-table td:nth-child(7){
       display: none;
     }
-    .book-request-table thead th:nth-child(5){
-      display: block;
-    }
     .book-request-table td:nth-child(5){
       display: block;
+    }
+    .table-no-result {
+      display: block;
+      font-size: 15px;
+      font-weight: bold;
     }
   }
 </style>
