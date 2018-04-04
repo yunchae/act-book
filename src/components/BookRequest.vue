@@ -129,7 +129,6 @@ export default {
         showCancelButton: true,
         focusConfirm: false,
       }).then((result) => {
-
         if(result.value === ""){
           this.$swal(
             '이름이 입력되지 않았습니다.'
@@ -140,8 +139,7 @@ export default {
           this.$swal({
             title: '책 신청 완료',
             html: bookTitle,
-          }).then((result) => {
-            // console.log('applier : ', applier);
+          }).then(() => {
             var book = new Book(bookInfo.isbn, bookTitle, this.removeBTag(bookInfo.author), bookInfo.publishedDate, bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image, applier);
             this.fireStore.insertBook(book);
             this.tableData[no-1].status = '신청중'

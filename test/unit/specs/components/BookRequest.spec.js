@@ -29,9 +29,8 @@ describe('Test Case BookRequest Vue', ()=>{
       });
     })
 
-
-    const stubReadAllBooks = sandbox.stub(FirebaseDao.prototype, 'readAllBooks');
-    stubReadAllBooks.callsFake((callback)=> {
+    const stubReadAllBooksForCheckIFWeHave = sandbox.stub(FirebaseDao.prototype, 'readAllBooksForCheckIFWeHave');
+    stubReadAllBooksForCheckIFWeHave.callsFake((callback)=> {
       return callback(TestCase.TEST_CASE.BOOK_HAVE_LIST)
     })
 
@@ -40,6 +39,9 @@ describe('Test Case BookRequest Vue', ()=>{
     wrapper.vm.api = {};   // BookRequest Wrapper api property 를 선언 및 초기화
     wrapper.vm.api.searchBook = stubSearchBook; // BookRequest Wrapper api 객체의 property로
                                                 // searchBook stub 로 초기화
+
+    wrapper.vm.fireStore = new FirebaseDao();
+
     wrapper.vm.searchInputTitle = 'java' // 검색어 input data 'java'로 셋
 
     //when
@@ -58,12 +60,18 @@ describe('Test Case BookRequest Vue', ()=>{
     // wrapper mount
     const wrapper  = mount(BookRequest)
     const stub$swal = sandbox.stub();
+
+    stub$swal.callsFake((result)=>{         // $swal stub (input -> output 정의 )
+      result.value = 'nyc';
+      return new Promise((resolve) => {
+        resolve(result)
+    })
+
     wrapper.vm.$swal = stub$swal;
     sandbox.stub(FirebaseDao.prototype, 'insertBook');
 
     //조회가 된 상태
     wrapper.vm.tableData = TestCase.TEST_CASE.BOOK_SEARCH_TABLE_RESULT;
-
 
     //When
     // 메서드가 호출 클릭했을 때

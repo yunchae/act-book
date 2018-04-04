@@ -1,15 +1,15 @@
 export default {
   TEST_CASE :{
     BOOK_SEARCH_TABLE_RESULT: [
-      { no: 1, isbn: "8970508880 9788970508887", title: "명품 HTML5 + CSS3 + Javascript 웹 프로그래밍", author: "황기태", publisher:"생능출판사", publishedDate:"20170116", status:"신청중",
+      { no: 1, isbn: "8970508880 9788970508887", title: "명품 HTML5 + CSS3 + Javascript 웹 프로그래밍", author: "황기태", publisher:"생능출판사", publishedDate:"2017-01-16", status:"신청중",
         link:"http://book.naver.com/bookdb/book_detail.php?bid=11575805", image:"http://bookthumb.phinf.naver.net/cover/115/758/11575805.jpg?type=m1&udate=20180110" },
-      { no: 2, isbn: "8996094072 9788996094074",title: "윤성우의 열혈 <b>Java</b> 프로그래밍", author: "윤성우", publisher:"오렌지미디어", publishedDate:"20170705", status:"보유",
+      { no: 2, isbn: "8996094072 9788996094074",title: "윤성우의 열혈 <b>Java</b> 프로그래밍", author: "윤성우", publisher:"오렌지미디어", publishedDate:"2017-07-05", status:"보유",
         link:"http://book.naver.com/bookdb/book_detail.php?bid=12236206", image:"http://bookthumb.phinf.naver.net/cover/122/362/12236206.jpg?type=m1&udate=20171016" },
-      { no: 3, isbn: "8994492038 9788994492032",title: "<b>Java</b>의 정석 (최신 <b>Java</b> 8.0 포함)", author: "남궁성", publisher:"도우출판", publishedDate:"20160127", status:"보유",
+      { no: 3, isbn: "8994492038 9788994492032",title: "<b>Java</b>의 정석 (최신 <b>Java</b> 8.0 포함)", author: "남궁성", publisher:"도우출판", publishedDate:"2016-01-27", status:"보유",
         link:"http://book.naver.com/bookdb/book_detail.php?bid=10191151", image:"http://bookthumb.phinf.naver.net/cover/101/911/10191151.jpg?type=m1&udate=20171007" },
-      { no: 4, isbn: "8968483558 9788968483554",title: "모던 웹을 위한 JavaScript + jQuery 입문 (ECMAScript 5/6, jQuery 3.X 대응)", author: "윤인성", publisher:"한빛미디어", publishedDate:"20170501", status:"",
+      { no: 4, isbn: "8968483558 9788968483554",title: "모던 웹을 위한 JavaScript + jQuery 입문 (ECMAScript 5/6, jQuery 3.X 대응)", author: "윤인성", publisher:"한빛미디어", publishedDate:"2017-05-01", status:"",
         link:"http://book.naver.com/bookdb/book_detail.php?bid=11990519", image:"http://bookthumb.phinf.naver.net/cover/119/905/11990519.jpg?type=m1&udate=20171003" },
-      { no: 5, isbn: "1185578218 9791185578217",title: "어서와 <b>Java</b>는 처음이지! (JDK8로 배우는 자바 프로그래밍)", author: "천인국", publisher:"인피니티북스", publishedDate:"20151125", status:"",
+      { no: 5, isbn: "1185578218 9791185578217",title: "어서와 <b>Java</b>는 처음이지! (JDK8로 배우는 자바 프로그래밍)", author: "천인국", publisher:"인피니티북스", publishedDate:"2015-11-25", status:"",
         link:"http://book.naver.com/bookdb/book_detail.php?bid=9818779", image:"http://bookthumb.phinf.naver.net/cover/098/187/09818779.jpg?type=m1&udate=20160707" }
       ],
     BOOK_HAVE_LIST : [
@@ -24,15 +24,15 @@ export default {
         createdDate: "2018-03-28T16:11:36.543Z", updatedDate:"2018-03-28T16:11:42.703Z"}
       ],
     BOOK_REQUESTED_TABLE_RESULT: [
-      { no: 1, isbn: "8970508880 9788970508887", title: "명품 HTML5 + CSS3 + Javascript 웹 프로그래밍", author: "황기태", publisher:"생능출판사", publishedDate:"20170116", status:"신청중",
+      { no: 1, isbn: "8970508880 9788970508887", title: "명품 HTML5 + CSS3 + Javascript 웹 프로그래밍", author: "황기태", publisher:"생능출판사", publishedDate:"2017-01-16", status:"신청중",
         link:"http://book.naver.com/bookdb/book_detail.php?bid=11575805", image:"http://bookthumb.phinf.naver.net/cover/115/758/11575805.jpg?type=m1&udate=20180110" },
-      { no: 2, isbn: "8996094072 9788996094074",title: "윤성우의 열혈 <b>Java</b> 프로그래밍", author: "윤성우", publisher:"오렌지미디어", publishedDate:"20170705", status:"보유",
+      { no: 2, isbn: "8996094072 9788996094074",title: "윤성우의 열혈 <b>Java</b> 프로그래밍", author: "윤성우", publisher:"오렌지미디어", publishedDate:"2017-07-05", status:"보유",
         link:"http://book.naver.com/bookdb/book_detail.php?bid=12236206", image:"http://bookthumb.phinf.naver.net/cover/122/362/12236206.jpg?type=m1&udate=20171016" },
-      { no: 3, isbn: "8994492038 9788994492032",title: "<b>Java</b>의 정석 (최신 <b>Java</b> 8.0 포함)", author: "남궁성", publisher:"도우출판", publishedDate:"20160127", status:"보유",
+      { no: 3, isbn: "8994492038 9788994492032",title: "<b>Java</b>의 정석 (최신 <b>Java</b> 8.0 포함)", author: "남궁성", publisher:"도우출판", publishedDate:"2016-01-27", status:"보유",
         link:"http://book.naver.com/bookdb/book_detail.php?bid=10191151", image:"http://bookthumb.phinf.naver.net/cover/101/911/10191151.jpg?type=m1&udate=20171007" },
-      { no: 4, isbn: "8968483558 9788968483554",title: "모던 웹을 위한 JavaScript + jQuery 입문 (ECMAScript 5/6, jQuery 3.X 대응)", author: "윤인성", publisher:"한빛미디어", publishedDate:"20170501",
+      { no: 4, isbn: "8968483558 9788968483554",title: "모던 웹을 위한 JavaScript + jQuery 입문 (ECMAScript 5/6, jQuery 3.X 대응)", author: "윤인성", publisher:"한빛미디어", publishedDate:"2017-05-01",
         status:"신청중", link:"http://book.naver.com/bookdb/book_detail.php?bid=11990519", image:"http://bookthumb.phinf.naver.net/cover/119/905/11990519.jpg?type=m1&udate=20171003" },
-      { no: 5, isbn: "1185578218 9791185578217",title: "어서와 <b>Java</b>는 처음이지! (JDK8로 배우는 자바 프로그래밍)", author: "천인국", publisher:"인피니티북스", publishedDate:"20151125", status:"",
+      { no: 5, isbn: "1185578218 9791185578217",title: "어서와 <b>Java</b>는 처음이지! (JDK8로 배우는 자바 프로그래밍)", author: "천인국", publisher:"인피니티북스", publishedDate:"2015-11-25", status:"",
         link:"http://book.naver.com/bookdb/book_detail.php?bid=9818779", image:"http://bookthumb.phinf.naver.net/cover/098/187/09818779.jpg?type=m1&udate=20160707" }
     ],
     BOOK_REQUESTED_TABLE_ROW:
