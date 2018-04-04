@@ -27,7 +27,7 @@ describe('Test Case BookRequest Vue', ()=>{
       });
     })
 
-    const stubReadAllBooksForCheckIFWeHave = sandbox.stub(FirebaseDao.prototype, 'readAllBooksForCheckIFWeHave');
+    const stubReadAllBooksForCheckIFWeHave = sandbox.stub(FirebaseDao.prototype, 'readAllBooksBy');
     stubReadAllBooksForCheckIFWeHave.callsFake((callback)=> {
       return callback(TestCase.TEST_CASE.BOOK_HAVE_LIST)
     })

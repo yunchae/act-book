@@ -1,12 +1,7 @@
 import BookRequestList from '../../../../src/components/BookRequestList';
 import * as sinon from "sinon";
-import {shallow, mount, createLocalVue} from 'vue-test-utils';
-import Vue from 'vue'
+import {shallow} from 'vue-test-utils';
 import FirebaseDao from '../../../../src/utils/FirebaseDao'
-
-import api from '../../../../src/api/index'
-import TestCase from "../../../../src/assets/resources";
-//import { expect } from 'chai';
 
 describe("BookRequestList", ()=> {
 
@@ -24,9 +19,9 @@ describe("BookRequestList", ()=> {
 
   it('컴포넌트가 처믕 생성될 때, 테이블 데이터 호출', ()=> {
 
-    let readAllRequestedBooksStub = sandbox.stub(FirebaseDao.prototype, "readAllRequestedBooks")
+    let readAllRequestedBooksStub = sandbox.stub(FirebaseDao.prototype, "readAllBooksBy")
     let result = [];
-    readAllRequestedBooksStub.callsFake((a, b, callback) => {
+    readAllRequestedBooksStub.callsFake((callback) => {
       callback(result);
     });
 
@@ -62,5 +57,33 @@ describe("BookRequestList", ()=> {
 
     expect(wrapper.vm.tableData[0].status).toBe("보유")
   })
+
+  it('보유 라디오 버튼을 클릭하면 보유중인 책 목록만 가져오는 함수가 호출된다', () => {
+
+    let result = [
+      { no: 1, title: "자바의 정석", author: "20", publisher:"시나공", publishedDate:"2018-01-01", createdDate:"2018-01-01",applier:"hannic",status:"보유" },
+      { no: 2, title: "자바의 정석", author: "20", publisher:"시나공", publishedDate:"2018-01-01", createdDate:"2018-01-01",applier:"hannic",status:"보유" },
+      { no: 3, title: "자바의 정석", author: "20", publisher:"시나공", publishedDate:"2018-01-01", createdDate:"2018-01-01",applier:"hannic",status:"보유" }
+    ];
+
+    let readAllBooksBy = sandbox.stub(FirebaseDao.prototype, "readAllBooksBy")
+
+    readAllBooksBy.callsFake((callback)=> {
+      callback(result)
+    })
+
+    let fireStore = new FirebaseDao()
+    const wrapper = shallow(BookRequestList,{
+      mocks: {
+        fireStore
+      }
+    });
+
+    wrapper.find('input[value="전체"]').trigger('click')
+    expect(wrapper.vm.tableData).toEqual(result);
+
+  })
+
+
 
 })
