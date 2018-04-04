@@ -28,7 +28,7 @@
     <div class="book-list-table act-table-responsive">
       <v-client-table :data="tableData" :columns="columns" :options="options">
         <div slot="no" slot-scope="props">
-          {{props.index}}
+          {{tableData[props.index-1].no = props.index}}
         </div>
         <div slot="title" slot-scope="props" style="text-align:left;">
           <a class="ellipsis" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title"></a>

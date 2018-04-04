@@ -17,7 +17,7 @@
     <div class="book-request-table act-table-responsive">
       <v-client-table :data="tableData" :columns="columns" :options="options">
         <div slot="no" slot-scope="props">
-          {{props.index}}
+          {{tableData[props.index-1].no = props.index}}
         </div>
         <div slot="title" slot-scope="props" style="text-align:left;">
           <popper :options="{placement: 'right'}">
@@ -30,12 +30,12 @@
         <div class="ellipsis" slot="author" slot-scope="props" v-html="props.row.author"></div>
 
         <div slot="status" slot-scope="props">
-          <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row, props.index)" > 신청</Button>
+          <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
           <span  v-else-if="props.row.status !=''" > {{props.row.status}}</span>
         </div>
 
         <div slot="dateForMobile" slot-scope="props">
-          출판일 : {{props.row.publishedDate}}&nbsp;&nbsp;<Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row, props.index)" > 신청</Button>
+          출판일 : {{props.row.publishedDate}}&nbsp;&nbsp;<Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
           <span  v-else-if="props.row.status !=''" >/ {{props.row.status}}</span>
         </div>
       </v-client-table>
@@ -116,7 +116,7 @@ export default {
         }
       }
     },
-    requestBook: function (bookInfo, no) {
+    requestBook: function (bookInfo) {
 
       let bookTitle = this.removeBTag(bookInfo.title) ;
 
@@ -142,7 +142,8 @@ export default {
           }).then(() => {
             var book = new Book(bookInfo.isbn, bookTitle, this.removeBTag(bookInfo.author), bookInfo.publishedDate, bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image, applier);
             this.fireStore.insertBook(book);
-            this.tableData[no-1].status = '신청중'
+
+            this.tableData[bookInfo.no-1].status = '신청중'
           })
         }
       });

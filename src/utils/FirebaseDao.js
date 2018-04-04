@@ -24,7 +24,7 @@ export default class FirebaseDao {
 
       snapshot.forEach((childSnapshot) => {
         let book = childSnapshot.val();
-
+        book.no = 0
         if(this.isKeywordValidated(searchKeyword, book)){
           if(isCanceledIncluded){
             returnBooks.push(book);

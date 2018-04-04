@@ -29,7 +29,7 @@
     <div class="act-table-responsive book-request-list-table">
       <v-client-table :data="tableData" :columns="columns" :options="options" >
         <div slot="no" slot-scope="props">
-          {{props.index}}
+          {{tableData[props.index-1].no = props.index}}
         </div>
         <div slot="title" slot-scope="props" style="text-align:left;">
             <a class="ellipsis" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
@@ -40,14 +40,14 @@
         <div slot="dateForMobile" slot-scope="props">출판일 : {{props.row.publishedDate}} / 신청일 : {{props.row.createdDate.substring(0,10)}}</div>
 
         <div slot="status" slot-scope="props">
-          <select  v-model="props.row.status" @change="statusChanged(props.index, props.row.isbn, $event)">
+          <select  v-model="props.row.status" @change="statusChanged(props.row.no, props.row.isbn, $event, props.row.title)">
             <option>신청중</option>
             <option>보유</option>
             <option>취소</option>
           </select>
         </div>
         <div slot="applierAndStatus" slot-scope="props">
-          <select  v-model="props.row.status" @change="statusChanged(props.index, props.row.isbn, $event)">
+          <select  v-model="props.row.status" @change="statusChanged(props.row.no, props.row.isbn, $event)">
             <option>신청중</option>
             <option>보유</option>
             <option>취소</option>
@@ -89,7 +89,7 @@
       this.readBooksByFilter();
     },
     methods: {
-      statusChanged: function(rowNo, isbn, e){
+      statusChanged: function(rowNo, isbn, e, title){
         let selectedStatus = e.target.value;
         this.fireStore.updateBook(isbn, selectedStatus);
         this.tableData[rowNo-1].status = selectedStatus;
