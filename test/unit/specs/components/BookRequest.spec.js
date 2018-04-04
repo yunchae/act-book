@@ -61,10 +61,10 @@ describe('Test Case BookRequest Vue', ()=>{
     const wrapper  = mount(BookRequest)
     const stub$swal = sandbox.stub();
 
-    stub$swal.callsFake((result)=>{         // searchBook stub (input -> output 정의 )
-      return new Promise((result) => {
-        resolve('yunchae')
-      });
+    stub$swal.callsFake((result)=>{         // $swal stub (input -> output 정의 )
+      result.value = 'nyc';
+      return new Promise((resolve) => {
+        resolve(result)
     })
 
     wrapper.vm.$swal = stub$swal;
@@ -72,7 +72,6 @@ describe('Test Case BookRequest Vue', ()=>{
 
     //조회가 된 상태
     wrapper.vm.tableData = TestCase.TEST_CASE.BOOK_SEARCH_TABLE_RESULT;
-
 
     //When
     // 메서드가 호출 클릭했을 때
