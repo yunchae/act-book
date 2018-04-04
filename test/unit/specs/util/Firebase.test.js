@@ -43,7 +43,7 @@ describe('Firebase', () => {
     // const fakedFun = sandbox.spy();
     const fb = new FirebaseDao();
 
-    fb.readBooks('전체','',fakedFun);
+    fb.readAllBooksBy(fakedFun, '전체', '', true);
     await flushPromises()
 
      //expect(fakedFun.calledOnce).toBe(true);

@@ -2,18 +2,17 @@
 
   <div id="bookRequest">
     <div class="btn-group" style="margin-bottom: 10px;">
-        <div class="col-lg-6 " style="float: right;padding-right: 0px">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" id="txtSearch" v-model="searchInputTitle" @keyup.enter="searchBookList"/>
-            <div class="input-group-btn">
-              <button id="searchButton" class="btn act-button" type="submit" @click="searchBookList">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </div>
+      <div class="col-lg-6 " style="float: right;padding-right: 0px">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" id="txtSearch" v-model="searchInputTitle" @keyup.enter="searchBookList"/>
+          <div class="input-group-btn">
+            <button id="searchButton" class="btn act-button" type="submit" @click="searchBookList">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
           </div>
         </div>
+      </div>
     </div>
-
 
     <div class="book-request-table act-table-responsive">
       <v-client-table :data="tableData" :columns="columns" :options="options">
@@ -22,12 +21,11 @@
         </div>
         <div slot="title" slot-scope="props" style="text-align:left;">
           <popper :options="{placement: 'right'}">
-          <div class="popper">
-            <img style="width:100px; height:100px;" v-bind:src="props.row.image">
-          </div>
-          <a class="ellipsis" slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title">
-          </a>
-        </popper>
+            <div class="popper">
+              <img style="width:100px; height:100px;" v-bind:src="props.row.image">
+            </div>
+            <a class="ellipsis" slot="reference" v-bind:href="props.row.link"  target="_blank" v-html="props.row.title"></a>
+          </popper>
         </div>
         <div class="ellipsis" slot="author" slot-scope="props" v-html="props.row.author"></div>
 
@@ -36,27 +34,22 @@
           <span  v-else-if="props.row.status !=''" > {{props.row.status}}</span>
         </div>
 
-          <div slot="dateForMobile" slot-scope="props">
-            출판일 : {{props.row.publishedDate}}&nbsp;&nbsp;<Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row, props.index)" > 신청</Button>
-            <span  v-else-if="props.row.status !=''" >/ {{props.row.status}}</span>
-
-          </div>
-        </v-client-table>
-        <div class="table-no-result" v-if="tableData.length === 0">No matching records</div>
+        <div slot="dateForMobile" slot-scope="props">
+          출판일 : {{props.row.publishedDate}}&nbsp;&nbsp;<Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row, props.index)" > 신청</Button>
+          <span  v-else-if="props.row.status !=''" >/ {{props.row.status}}</span>
+        </div>
+      </v-client-table>
+      <div class="table-no-result" v-if="tableData.length === 0">No matching records</div>
     </div>
-
   </div>
 </template>
 
 <script>
 
-  // import axios from 'axios'
-  // import FirebaseDao from '../utils/FirebaseDao'
   import Book from "../utils/Book";
   import VuePopper from 'vue-popperjs'
   import 'vue-popperjs/dist/css/vue-popper.css';
 
-  // const fb = new FirebaseDao();
 export default {
   name: 'BookRequest',
   components: {
@@ -79,16 +72,13 @@ export default {
           filterable: false, // 필터 사용 여부 또는 필터 적용할 컬럼 설정
           perPage: 10, // 한페이지에 보여줄 리스트 개수 (초기값)
           perPageValues: [10, 20, 30, 40, 50], // 한페이지에 보여줄 리스트 개수를 설정하는 값 리스트
-  //        columnsDisplay: "desktop"
-          // see the options API
-          //https://www.npmjs.com/package/vue-tables-2
         }
       }
   },
   methods: {
     searchBookList: function(){
       this.api.searchBook(encodeURI(this.searchInputTitle)).then((data)=>{
-        this.fireStore.readAllBooksForCheckIFWeHave((registedBooks) => {
+        this.fireStore.readAllBooksBy((registedBooks) => {
           this.convertToFinalResult(data.data, registedBooks);
         })
       })
@@ -152,7 +142,7 @@ export default {
             html: bookTitle,
           }).then((result) => {
             // console.log('applier : ', applier);
-            var book = new Book(bookInfo.isbn, bookTitle, this.removeBTag(bookInfo.author), this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image, applier);
+            var book = new Book(bookInfo.isbn, bookTitle, this.removeBTag(bookInfo.author), bookInfo.publishedDate, bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image, applier);
             this.fireStore.insertBook(book);
             this.tableData[no-1].status = '신청중'
           })
@@ -168,8 +158,6 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
   .book-request-table thead th:nth-child(5){
     display: none;
