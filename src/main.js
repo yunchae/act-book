@@ -13,7 +13,6 @@ import FirebaseDao from './utils/FirebaseDao';
 import VueSweetAlert2  from 'vue-sweetalert2'
 import './assets/css/act.table.css'
 import './assets/css/act.custom.css'
-//import 'expose-loader?$!expose-loader?jQuery!jquery'
 
 Vue.use(VueSweetAlert2)
 Vue.use(ClientTable)
@@ -25,7 +24,6 @@ Vue.prototype.fireStore = new FirebaseDao();
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,

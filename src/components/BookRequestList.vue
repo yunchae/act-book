@@ -1,7 +1,5 @@
 <template>
-
   <div id="bookList">
-
     <div class="btn-group" style="margin-bottom: 10px">
       <div style="margin-left: 5px; float: left; margin-bottom: 10px" >
         <label class="radio-inline">
@@ -27,7 +25,6 @@
           </div>
         </div>
       </div>
-      <!--</div>-->
     </div>
     <div class="act-table-responsive book-request-list-table">
       <v-client-table :data="tableData" :columns="columns" :options="options" >
@@ -49,7 +46,6 @@
             <option>취소</option>
           </select>
         </div>
-
         <div slot="applierAndStatus" slot-scope="props">
           <select  v-model="props.row.status" @change="statusChanged(props.index, props.row.isbn, $event)">
             <option>신청중</option>
@@ -64,8 +60,6 @@
 </template>
 
 <script>
-  // import FirebaseDao from '../utils/FirebaseDao'
-  // const fb = new FirebaseDao();
   export default {
     name: 'BookRequestList',
     data: function () {
@@ -85,7 +79,6 @@
             applier : '신청자',
             status: "상태"
           },
-//          sortable: ['title', 'publishedDate', 'status'],
           filterable: false, // 필터 사용 여부 또는 필터 적용할 컬럼 설정
           perPage: 10, // 한페이지에 보여줄 리스트 개수 (초기값)
           perPageValues: [10, 20, 30, 40, 50], // 한페이지에 보여줄 리스트 개수를 설정하는 값 리스트
@@ -102,8 +95,7 @@
         this.tableData[rowNo-1].status = selectedStatus;
       },
       readBooksByFilter: function(){
-//        console.log('keyword: ',this.keyword);
-        this.fireStore.readAllRequestedBooks(this.searchOpt, this.keyword, this.setTableData);
+        this.fireStore.readAllBooksBy(this.setTableData, this.searchOpt, this.keyword);
       },
       getBooksByStatus: function(e){
         this.searchOpt = e.target.value;
@@ -116,8 +108,6 @@
 
   }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
   .book-request-list-table thead th:nth-child(5){
     display: none;

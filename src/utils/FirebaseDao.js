@@ -1,14 +1,7 @@
 import firebase from 'firebase'
 import config from '../assets/config'
-// import $ from 'jquery'
 
-// const firebase = require("firebase");
-// require("firebase/firestore");
 firebase.initializeApp(config.FIREBASE_CONFIG);
-
-
-// Get a reference to the database
-// service
 
 export default class FirebaseDao {
 
@@ -16,49 +9,60 @@ export default class FirebaseDao {
     this.database = firebase.database();
   }
 
-  readBooks(filterType, searchKeyword, callback) {
+  queryStatusOrderedBooksBy(filterType) {
     let query = this.database.ref('books/').orderByChild('status');
 
-    if(filterType !='전체'){
+    if(filterType != '전체'){
       query = query.equalTo(filterType);
     }
+    return query.once('value');
+  }
 
-    query.once('value').then((snapshot) =>{
-      var arr = [];
+  readAllBooksBy(callback, filterType = '전체', searchKeyword = '', isCanceledIncluded = true) {
+    this.queryStatusOrderedBooksBy(filterType).then((snapshot)=>{
+      let returnBooks = [];
 
-      //Firebase database에서 조회 시 결과가 object로 넘어와서 배열로 변경 함
       snapshot.forEach((childSnapshot) => {
-        var item = childSnapshot.val();
+        let book = childSnapshot.val();
 
-        if(item.status !='취소') {
-          if (this.isSearchedWithoutKeyword(searchKeyword)
-            || this.isSearchedWithKeywordAndMatched(searchKeyword, item)) {
-            // item.no = arr.length + 1;
-            arr.push(item);
+        if(this.isKeywordValidated(searchKeyword, book)){
+          if(isCanceledIncluded){
+            returnBooks.push(book);
+          }else if(this.isNotCanceledBook(book)){
+            returnBooks.push(book);
           }
         }
-      })
-      // console.log(retArr);
-      callback(arr);
+      });
+
+      callback(this.sortBooksByCreatedDateDesc(returnBooks));
     }).catch(err => {
         console.log('Error getting documents', err);
     });
   }
 
-  readAllBooksForCheckIFWeHave(callback) {
-    this.database.ref('books/').once('value').then((snapshot) =>{
-      var returnArr = [];
+  sortBooksByCreatedDateDesc(books) {
+    return books.sort(function (a, b) {
+      if (a.createdDate < b.createdDate) {
+        return 1;
+      } else if (a.createdDate > b.createdDate) {
+        return -1;
+      }
+      return 0;
+    });
+  }
 
-      snapshot.forEach((childSnapshot) =>{
-        var item = childSnapshot.val();
+  isNotCanceledBook(book) {
+    return book.status != '취소';
+  }
 
-        returnArr.push(item);
-      });
-
-      return callback(returnArr);
-    }).catch(err => {
-        console.log('Error getting documents', err);
-      });
+  isKeywordValidated(searchKeyword, book) {
+    if(searchKeyword.length == 0){
+      return true;
+    }
+    if (searchKeyword.length > 0 && book.title.toUpperCase().indexOf(searchKeyword.toUpperCase()) > -1){
+      return true;
+    }
+    return false;
   }
 
   insertBook(book) {
@@ -75,50 +79,6 @@ export default class FirebaseDao {
       image : book.image,
       applier : book.applier
     })
-  }
-
-  readAllRequestedBooks(filterType, searchKeyword, callback) {
-    let query = this.database.ref('books/').orderByChild('status');
-
-    if(filterType !='전체'){
-      query = query.equalTo(filterType);
-    }
-
-    query.once('value').then((snapshot)=>{
-      let arr = [];
-      // let count = snapshot.numChildren();
-
-      snapshot.forEach((childSnapshot) => {
-        var item = childSnapshot.val();
-
-        if (this.isSearchedWithoutKeyword(searchKeyword)
-          || this.isSearchedWithKeywordAndMatched(searchKeyword, item)){
-          // item.no = count--;
-          arr.unshift(item);
-        }
-      });
-
-
-      // console.log(returnArr)
-      return callback(arr.sort(function(a, b) {
-        if(a.createdDate < b.createdDate) {
-          return 1;
-        }else if(a.createdDate > b.createdDate) {
-          return -1;
-        }
-        return 0;
-      }));
-    }).catch(err => {
-        console.log('Error getting documents', err);
-      });
-  }
-
-  isSearchedWithoutKeyword(searchKeyword) {
-    return searchKeyword.length == 0;
-  }
-
-  isSearchedWithKeywordAndMatched(searchKeyword, item) {
-    return searchKeyword.length > 0 && item.title.toUpperCase().indexOf(searchKeyword.toUpperCase()) > -1;
   }
 
   updateBook(isbn, status){
