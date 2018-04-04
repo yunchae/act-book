@@ -150,7 +150,7 @@ export default {
           this.$swal({
             title: '책 신청 완료',
             html: bookTitle,
-          }).then((result) => {
+          }).then(() => {
             // console.log('applier : ', applier);
             var book = new Book(bookInfo.isbn, bookTitle, this.removeBTag(bookInfo.author), this.changeDateFormat(bookInfo.publishedDate), bookInfo.publisher,"신청중", bookInfo.link, bookInfo.image, applier);
             this.fireStore.insertBook(book);
