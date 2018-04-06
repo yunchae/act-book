@@ -40,12 +40,7 @@ export default {
         link:"http://book.naver.com/bookdb/book_detail.php?bid=12236206", image:"http://bookthumb.phinf.naver.net/cover/122/362/12236206.jpg?type=m1&udate=20171016" }
     ,
     BOOK_SEARCH_RESULT : {
-      data: {
-      "lastBuildDate": "Fri, 23 Mar 2018 13:54:26 +0900",
-        "total": 7048,
-        "start": 1,
-        "display": 10,
-        "items": [
+      items: [
         {
           "title": "명품 HTML5 + CSS3 + Javascript 웹 프로그래밍",
           "link": "http://book.naver.com/bookdb/book_detail.php?bid=11575805",
@@ -107,7 +102,7 @@ export default {
           "description": "이 책 [어서와 <b>JAVA</b>는 처음이지!]는 그림으로 중요한 개념을 확실하게 설명한 다음, LAB을 통해 충분히 활용할 수 있게 한 책으로, 중요한 핵심 개념들에 대해서는 꼼꼼한 설명을 들려주고 자바의 다양한 문법들을 예제나 LAB과 함께 다루고 있다. 책은 자바의 가장 최신버전인 JDK8을 포함시키고, 각각의... "
         }
       ]
-    }
+
     }
   },
   BOOKS: {

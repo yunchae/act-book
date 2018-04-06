@@ -9,7 +9,7 @@ describe('Test Case Api call', ()=>{
     sinon.spy(axios, 'get');
     api.searchBook('java');
 
-    expect(axios.get.withArgs('https://act-books-api.zz.am/books?title=java').calledOnce).toBe(true);
+    expect(axios.get.withArgs('https://hg8annz0g0.execute-api.ap-northeast-2.amazonaws.com/naverApiGateway?bookTitle=java').calledOnce).toBe(true);
 
     axios.get.restore();
   })
