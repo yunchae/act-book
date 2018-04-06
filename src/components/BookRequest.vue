@@ -79,12 +79,11 @@ export default {
     searchBookList: function(){
       this.api.searchBook(encodeURI(this.searchInputTitle)).then((data)=>{
         this.fireStore.readAllBooksBy((registedBooks) => {
-          this.convertToFinalResult(data.data, registedBooks);
+          this.convertToFinalResult(data, registedBooks);
         })
       })
     },
     convertToFinalResult: function(param, registedBooks){
-      //let data = param;
       let data = param.items;
       let finalData = []
 
