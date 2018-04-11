@@ -52,7 +52,7 @@ export default class FirebaseDao {
   }
 
   isNotCanceledBook(book) {
-    return book.status != '취소';
+    return book.status != '삭제';
   }
 
   isKeywordValidated(searchKeyword, book) {

@@ -12,7 +12,7 @@
           <input type="radio" name="optradio" value="신청중" v-model="searchOpt" @click="getBooksByStatus">신청중
         </label>
         <label class="radio-inline">
-          <input type="radio" name="optradio" value="취소" v-model="searchOpt" @click="getBooksByStatus">취소
+          <input type="radio" name="optradio" value="삭제" v-model="searchOpt" @click="getBooksByStatus">삭제
         </label>
       </div>
       <div class="col-lg-6" style="float: right; padding-right: 0px">
@@ -43,14 +43,14 @@
           <select  v-model="props.row.status" @change="statusChanged(props.row.no, props.row.isbn, $event, props.row.title)">
             <option>신청중</option>
             <option>보유</option>
-            <option>취소</option>
+            <option>삭제</option>
           </select>
         </div>
         <div slot="applierAndStatus" slot-scope="props">
           <select  v-model="props.row.status" @change="statusChanged(props.row.no, props.row.isbn, $event)">
             <option>신청중</option>
             <option>보유</option>
-            <option>취소</option>
+            <option>삭제</option>
           </select>
           <span v-if="props.row.applier !== undefined">&nbsp;(신청자 : {{props.row.applier}})</span>
         </div>
