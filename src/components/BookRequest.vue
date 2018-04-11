@@ -30,12 +30,12 @@
         <div class="ellipsis" slot="author" slot-scope="props" v-html="props.row.author"></div>
 
         <div slot="status" slot-scope="props">
-          <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
+          <Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='삭제'" @click="requestBook(props.row)" > 신청</Button>
           <span  v-else-if="props.row.status !=''" > {{props.row.status}}</span>
         </div>
 
         <div slot="dateForMobile" slot-scope="props">
-          출판일 : {{props.row.publishedDate}}&nbsp;&nbsp;<Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='취소'" @click="requestBook(props.row)" > 신청</Button>
+          출판일 : {{props.row.publishedDate}}&nbsp;&nbsp;<Button class="btn btn-primary" v-if="props.row.status=='' || props.row.status=='삭제'" @click="requestBook(props.row)" > 신청</Button>
           <span  v-else-if="props.row.status !=''" >/ {{props.row.status}}</span>
         </div>
       </v-client-table>
